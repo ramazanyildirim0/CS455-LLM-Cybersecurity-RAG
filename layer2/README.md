@@ -2,7 +2,7 @@
 
 ## Overview
 
-Layer 2 is the semantic retrieval stage of the PythonGuard pipeline. Given an input Python code snippet and the Layer 1 static analysis findings, it queries all three FAISS indexes in parallel and returns the top-5 most semantically relevant chunks per index. This output is passed to Layer 3 (the LLM prompt builder) as grounding context for citation-backed findings.
+Layer 2 is the semantic retrieval stage of the PythonGuard pipeline. Given an input Python code snippet and the Layer 1 static analysis findings, it queries all three FAISS indexes in parallel and returns the top-5 most relevant chunks per index. Retrieval is **two-stage**: a bi-encoder retrieves 20 candidates per index, then a cross-encoder re-ranks them to the final top-5.
 
 ## Usage
 
@@ -23,13 +23,13 @@ Returns a dict with one key per index, each holding a list of up to `top_k` resu
 
 ```python
 {
-    "security":    [ { ...chunk fields..., "score": float }, ... ],
-    "style":       [ { ...chunk fields..., "score": float }, ... ],
-    "bug_pattern": [ { ...chunk fields..., "score": float }, ... ],
+    "security":    [ { ...chunk fields..., "score": float, "ce_score": float }, ... ],
+    "style":       [ { ...chunk fields..., "score": float, "ce_score": float }, ... ],
+    "bug_pattern": [ { ...chunk fields..., "score": float, "ce_score": float }, ... ],
 }
 ```
 
-Each result dict contains the chunk's metadata fields plus a `"score"` (cosine similarity, 0–1):
+Each result dict contains the chunk's metadata fields plus two scores:
 
 ```json
 {
@@ -41,15 +41,21 @@ Each result dict contains the chunk's metadata fields plus a `"score"` (cosine s
   "cwe_ids":      ["CWE-78"],
   "citation":     "semgrep:python.lang.security.audit.dangerous-system-call",
   "text_preview": "Detected a dynamic value used in a system call...",
-  "score":        0.7193
+  "score":        0.6666,
+  "ce_score":    -1.5019
 }
 ```
+
+| Field | Description |
+|-------|-------------|
+| `score` | Bi-encoder cosine similarity (0–1, higher = more similar) |
+| `ce_score` | Cross-encoder relevance logit (unbounded; higher = more relevant) |
 
 ## Method
 
 ### Query Construction (Layer 1–augmented)
 
-Rather than using a single embedding for all three indexes, Layer 2 builds a targeted query string for each index by augmenting the raw code with relevant Layer 1 findings:
+Layer 2 builds a targeted query string for each index by augmenting the raw code with relevant Layer 1 findings:
 
 | Index | Query |
 |-------|-------|
@@ -57,15 +63,21 @@ Rather than using a single embedding for all three indexes, Layer 2 builds a tar
 | **style** | `code + "\n" + pylint finding messages` |
 | **bug_pattern** | raw `code` only |
 
-If no findings exist for a given tool (e.g. Bandit finds nothing), the query falls back to the raw code. This augmentation steers the embedding toward the vulnerability class already detected by the static analysis tool, improving retrieval precision.
+If no findings exist for a given tool the query falls back to the raw code. This augmentation steers the embedding toward the vulnerability class already detected by the static analysis tool.
 
-### Embedding
+### Stage 1 — Bi-Encoder (all-MiniLM-L6-v2)
 
-All three query strings are encoded in a single `model.encode()` batch call using the locally-stored `all-MiniLM-L6-v2` sentence transformer (384-dimensional embeddings, L2-normalized for cosine similarity). The model is loaded once in `Retriever.__init__()` and reused across all calls.
+All three query strings are encoded in a single `model.encode()` batch call using the locally-stored `all-MiniLM-L6-v2` sentence transformer (384-dim, L2-normalized). The model is loaded once in `Retriever.__init__()` and reused across all calls.
 
-### Parallel Search
+The three FAISS index searches (`IndexFlatIP`, brute-force cosine similarity) are dispatched concurrently via `ThreadPoolExecutor` with 3 workers. Each index returns **top-20 candidates**.
 
-The three FAISS index searches (`IndexFlatIP`, brute-force cosine similarity) are dispatched concurrently via `concurrent.futures.ThreadPoolExecutor` with 3 workers — one per index. FAISS operations are C++-backed, so threads run with minimal GIL contention. Results are collected as futures complete.
+### Stage 2 — Cross-Encoder Re-ranking (ms-marco-MiniLM-L-6-v2)
+
+The 20 candidates from each index are re-ranked by scoring `(query, text_preview)` pairs with `cross-encoder/ms-marco-MiniLM-L-6-v2`. The cross-encoder reads both texts jointly (not as separate embeddings), giving it fine-grained relevance judgment. The top-5 by CE score are returned.
+
+```
+Bi-encoder → top-20 candidates → Cross-encoder → top-5 final results
+```
 
 ### Index Sources
 
@@ -76,9 +88,11 @@ The three FAISS index searches (`IndexFlatIP`, brute-force cosine similarity) ar
 | **bug_pattern** | 10,462 | Dahoas/code-review-instruct-critique-revision-python, Muennighoff/python-bugs |
 | **Total** | 12,104 | — |
 
-## Sample Run
+---
 
-Input code (OS command injection vulnerability):
+## Sample Run — OS Command Injection
+
+Input code:
 
 ```python
 import os
@@ -86,20 +100,45 @@ def run(cmd):
     os.system(cmd)
 ```
 
-Layer 1 findings (from Bandit):
-- `B605` — `os.system` injection, CRITICAL, CWE-78
+Layer 1: B605 (CWE-78, CRITICAL)
 
-Layer 2 security index results (top 5):
+### Bi-encoder only (top-5 by cosine score)
 
-| Rank | Score | Title | CWE |
-|------|-------|-------|-----|
-| 1 | 0.7193 | dangerous-system-call-tainted-env-args | CWE-78 |
-| 2 | 0.7105 | dangerous-system-call | CWE-78 |
-| 3 | 0.6930 | dangerous-system-call | CWE-78 |
-| 4 | 0.6815 | dangerous-os-exec-tainted-env-args | CWE-78 |
-| 5 | 0.6710 | os-system-injection | CWE-78 |
+| Rank | Bi score | Title |
+|------|----------|-------|
+| 1 | 0.6972 | subprocess-injection |
+| 2 | 0.6972 | subprocess-injection |
+| 3 | 0.6666 | os-system-injection |
+| 4 | 0.6574 | dangerous-subprocess-use |
+| 5 | 0.6570 | command-injection-os-system |
 
-All top 5 security results correctly surface CWE-78 (OS Command Injection) Semgrep rules — the precise vulnerability class present in the input. This confirms that the Layer 1–augmented query strategy successfully steers retrieval toward the relevant rule set.
+### Bi-encoder + Cross-encoder (top-5 by CE score after retrieving top-20)
+
+| Rank | Bi score | CE score | Title |
+|------|----------|----------|-------|
+| 1 | 0.6570 | -1.0594 | **command-injection-os-system** |
+| 2 | 0.6666 | -1.5019 | **os-system-injection** |
+| 3 | 0.6972 | -5.0665 | subprocess-injection |
+| 4 | 0.6972 | -5.0665 | subprocess-injection |
+| 5 | 0.6574 | -6.3131 | dangerous-subprocess-use |
+
+**Key observation:** The bi-encoder ranked `subprocess-injection` #1 because it is lexically similar to shell injection in general. The cross-encoder correctly promoted `command-injection-os-system` to #1 — the rule specifically addresses `os.system()`, which is exactly the function used in the input code.
+
+---
+
+## Bi-Encoder vs. Bi-Encoder + Cross-Encoder: Security Index Top-1 Comparison
+
+| Snippet | Bi-encoder top-1 | CE-reranked top-1 | Changed? |
+|---------|-----------------|-------------------|----------|
+| SQL injection (`" + user_id`) | access-foreign-keys (0.485) | access-foreign-keys (-1.43) | No — both agree |
+| OS injection (`os.system(cmd)`) | **subprocess-injection** (0.697) | **command-injection-os-system** (-1.06) | Yes — more specific rule promoted |
+| Shell injection (`shell=True`) | **subprocess-injection** (0.561) | **subprocess-shell-true** (-0.51) | Yes — `shell=True`-specific rule promoted |
+
+The cross-encoder makes the biggest difference when the vulnerability has multiple closely related rules in the index. It correctly demotes the generic rule (`subprocess-injection`) in favour of the more precise one (`command-injection-os-system`, `subprocess-shell-true`).
+
+Full detailed results for all three test cases across all three indexes are in [`retrieval_biencoder_crossencoder.md`](retrieval_biencoder_crossencoder.md).
+
+---
 
 ## Role in the Pipeline
 
@@ -111,18 +150,20 @@ Input Code
     │        └── findings list
     │                │
     ▼                ▼
-┌────────────────────────────────┐
-│           Retriever            │
-│                                │
-│  sec_query  = code + bandit    │
-│  style_query = code + pylint   │──► parallel FAISS search (3 threads)
-│  bug_query  = code             │
-└────────────────────────────────┘
-         │           │           │
-    security       style    bug_pattern
-    top-5          top-5      top-5
-         │           │           │
-         └─────────────────────────►  Layer 3 (LLM Prompt Builder)
+┌────────────────────────────────────────────┐
+│                 Retriever                  │
+│                                            │
+│  sec_query   = code + bandit messages      │
+│  style_query = code + pylint messages      │──► ThreadPoolExecutor (3 threads)
+│  bug_query   = code                        │    FAISS top-20 per index
+│                                            │
+│  Cross-encoder re-ranks 20 → top-5         │
+└────────────────────────────────────────────┘
+         │              │              │
+    security          style       bug_pattern
+    top-5 (CE)       top-5 (CE)   top-5 (CE)
+         │              │              │
+         └──────────────────────────────►  Layer 3 (LLM Prompt Builder)
 ```
 
 ## Dependencies
@@ -133,4 +174,6 @@ sentence-transformers>=2.2
 numpy
 ```
 
-The `all-MiniLM-L6-v2` model must be present at `models/all-MiniLM-L6-v2/` (pre-downloaded during dataset setup).
+Models required:
+- `models/all-MiniLM-L6-v2/` — bi-encoder (pre-downloaded during dataset setup)
+- `models/cross-encoder-ms-marco/` — cross-encoder (~80 MB, downloaded via `download_llm_models.py`)
