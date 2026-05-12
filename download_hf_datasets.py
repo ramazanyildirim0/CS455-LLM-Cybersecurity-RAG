@@ -4,7 +4,7 @@ import os
 import warnings
 warnings.filterwarnings("ignore")
 
-BASE = "/Users/ramazanyildirim/Desktop/Spring 2025/CS455/project/dataset"
+BASE = "/Users/ramazanyildirim/Desktop/Spring 2025/CS455/project/starting_dataset"
 
 # ---------------------------------------------------------------------------
 # HuggingFace datasets

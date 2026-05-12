@@ -8,8 +8,8 @@ import json
 import re
 from pathlib import Path
 
-BASE = Path(__file__).parent.parent / "dataset" / "style"
-OUT  = Path(__file__).parent.parent / "normalized" / "style_peps.jsonl"
+BASE = Path(__file__).parent.parent / "starting_dataset" / "style"
+OUT  = Path(__file__).parent.parent / "dataset" / "style_peps.jsonl"
 
 PEP_META = {
     "pep8_style_guide":            {"pep": "PEP 8",  "topic": "style",    "tags": ["style", "formatting", "indentation", "naming"]},

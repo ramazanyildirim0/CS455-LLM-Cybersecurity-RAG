@@ -44,7 +44,7 @@ print()
 print("=" * 55)
 print("SUMMARY")
 print("=" * 55)
-normalized_dir = Path(__file__).parent.parent / "normalized"
+normalized_dir = Path(__file__).parent.parent / "dataset"
 total = 0
 for f in sorted(normalized_dir.glob("*.jsonl")):
     n = sum(1 for _ in open(f, encoding="utf-8"))

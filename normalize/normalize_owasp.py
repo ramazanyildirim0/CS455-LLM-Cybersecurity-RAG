@@ -4,8 +4,8 @@ import json
 import re
 from pathlib import Path
 
-BASE = Path(__file__).parent.parent / "dataset" / "security" / "owasp" / "cheatsheets"
-OUT  = Path(__file__).parent.parent / "normalized" / "security_owasp.jsonl"
+BASE = Path(__file__).parent.parent / "starting_dataset" / "security" / "owasp" / "cheatsheets"
+OUT  = Path(__file__).parent.parent / "dataset" / "security_owasp.jsonl"
 
 MIN_SECTION_CHARS = 80  # skip trivially short sections
 

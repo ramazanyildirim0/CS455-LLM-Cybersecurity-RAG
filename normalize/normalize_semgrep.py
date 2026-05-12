@@ -5,8 +5,8 @@ import re
 from pathlib import Path
 import yaml
 
-BASE = Path(__file__).parent.parent / "dataset" / "security"
-OUT  = Path(__file__).parent.parent / "normalized" / "security_semgrep.jsonl"
+BASE = Path(__file__).parent.parent / "starting_dataset" / "security"
+OUT  = Path(__file__).parent.parent / "dataset" / "security_semgrep.jsonl"
 
 SOURCES = [
     ("semgrep_official",    BASE / "semgrep_official"    / "python"),

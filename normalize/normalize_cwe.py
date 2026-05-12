@@ -5,8 +5,8 @@ import re
 import xml.etree.ElementTree as ET
 from pathlib import Path
 
-BASE = Path(__file__).parent.parent / "dataset" / "security" / "cwe"
-OUT  = Path(__file__).parent.parent / "normalized" / "security_cwe.jsonl"
+BASE = Path(__file__).parent.parent / "starting_dataset" / "security" / "cwe"
+OUT  = Path(__file__).parent.parent / "dataset" / "security_cwe.jsonl"
 
 # XML namespace in the CWE catalog
 NS = {"cwe": "http://cwe.mitre.org/cwe-7"}

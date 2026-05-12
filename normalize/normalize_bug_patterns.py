@@ -4,8 +4,8 @@ import json
 import re
 from pathlib import Path
 
-BASE = Path(__file__).parent.parent / "dataset" / "bug_patterns"
-OUT  = Path(__file__).parent.parent / "normalized" / "bug_patterns.jsonl"
+BASE = Path(__file__).parent.parent / "starting_dataset" / "bug_patterns"
+OUT  = Path(__file__).parent.parent / "dataset" / "bug_patterns.jsonl"
 
 # Dahoas response block markers
 RE_ORIGINAL = re.compile(r"ORIGINAL CODE\s*[:\-]*\s*", re.I)
