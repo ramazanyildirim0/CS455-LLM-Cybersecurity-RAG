@@ -1,2 +1,16 @@
-starting_dataset/
+# secrets
+.env
+
+# model weights (large binaries — download via download_llm_models.py)
 models/
+!models/all-MiniLM-L6-v2/
+
+# raw source datasets (re-downloadable)
+starting_dataset/
+
+# python
+__pycache__/
+*.pyc
+*.pyo
+*.egg-info/
+.venv/

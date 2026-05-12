@@ -1,0 +1,350 @@
+{
+  "qwen2.5": [
+    {
+      "snippet": 1,
+      "validity": 1,
+      "coverage": 2,
+      "citation": 2,
+      "total": 5,
+      "raw_output": "[\n    {\n        \"line\": 4,\n        \"severity\": \"CRITICAL\",\n        \"explanation\": \"This query construction is vulnerable to SQL injection. An attacker can manipulate the `user_id` parameter to execute arbitrary SQL commands.\",\n        \"fix_suggestion\": \"Use parameterized queries to safely pass user_id. For example: `query = 'SELECT * FROM users WHERE id = ?'` and then pass `user_id` as a parameter to the execute method.\",\n        \"citation\": \"B608, CWE-89\"\n    }\n]",
+      "parsed_findings": [
+        {
+          "line": 4,
+          "severity": "CRITICAL",
+          "explanation": "This query construction is vulnerable to SQL injection. An attacker can manipulate the `user_id` parameter to execute arbitrary SQL commands.",
+          "fix_suggestion": "Use parameterized queries to safely pass user_id. For example: `query = 'SELECT * FROM users WHERE id = ?'` and then pass `user_id` as a parameter to the execute method.",
+          "citation": "B608, CWE-89"
+        }
+      ]
+    },
+    {
+      "snippet": 2,
+      "validity": 1,
+      "coverage": 2,
+      "citation": 2,
+      "total": 5,
+      "raw_output": "[\n    {\n        \"line\": 4,\n        \"severity\": \"CRITICAL\",\n        \"explanation\": \"Starting a process with a shell, possible injection detected, security issue.\",\n        \"fix_suggestion\": \"Use the 'subprocess' module instead, which is easier to use without accidentally injecting malicious code.\",\n        \"citation\": \"BANDIT B605, CWE-78, semgrep:dangerous-system-call-tainted-env-args\"\n    }\n]",
+      "parsed_findings": [
+        {
+          "line": 4,
+          "severity": "CRITICAL",
+          "explanation": "Starting a process with a shell, possible injection detected, security issue.",
+          "fix_suggestion": "Use the 'subprocess' module instead, which is easier to use without accidentally injecting malicious code.",
+          "citation": "BANDIT B605, CWE-78, semgrep:dangerous-system-call-tainted-env-args"
+        }
+      ]
+    },
+    {
+      "snippet": 3,
+      "validity": 1,
+      "coverage": 4,
+      "citation": 3,
+      "total": 8,
+      "raw_output": "[\n    {\"line\": 1, \"severity\": \"CRITICAL\", \"explanation\": \"Detected user input entering a `subprocess` call unsafely. This could result in a command injection vulnerability. An attacker could use this vulnerability to execute arbitrary commands.\", \"fix_suggestion\": \"Use subprocess.run with args instead of shell=True, e.g., subprocess.run(['ssh', host])\", \"citation\": \"semgrep:subprocess-injection, semgrep:subprocess-shell-true, CWE-78\"},\n    {\"line\": 3, \"severity\": \"WARNING\", \"explanation\": \"Possi",
+      "parsed_findings": [
+        {
+          "line": 1,
+          "severity": "CRITICAL",
+          "explanation": "Detected user input entering a `subprocess` call unsafely. This could result in a command injection vulnerability. An attacker could use this vulnerability to execute arbitrary commands.",
+          "fix_suggestion": "Use subprocess.run with args instead of shell=True, e.g., subprocess.run(['ssh', host])",
+          "citation": "semgrep:subprocess-injection, semgrep:subprocess-shell-true, CWE-78"
+        },
+        {
+          "line": 3,
+          "severity": "WARNING",
+          "explanation": "Possible hardcoded password: 'hunter2'. Hardcoded secrets can be easily exposed and lead to security vulnerabilities.",
+          "fix_suggestion": "Do not hardcode secrets. Use environment variables or a secure secrets management solution.",
+          "citation": "B105, CWE-259"
+        },
+        {
+          "line": 5,
+          "severity": "INFO",
+          "explanation": "Missing function or method docstring. Docstrings are important for documenting the purpose and usage of functions.",
+          "fix_suggestion": "Add a docstring to the function explaining its purpose and parameters.",
+          "citation": "C0116, PEP257"
+        },
+        {
+          "line": 6,
+          "severity": "CRITICAL",
+          "explanation": "Detected user input entering a `subprocess` call unsafely. This could result in a command injection vulnerability. An attacker could use this vulnerability to execute arbitrary commands.",
+          "fix_suggestion": "Use subprocess.run with args instead of shell=True, e.g., subprocess.run(['ssh', host])",
+          "citation": "semgrep:subprocess-injection, semgrep:subprocess-shell-true, CWE-78"
+        }
+      ]
+    }
+  ],
+  "llama3.1": [
+    {
+      "snippet": 1,
+      "validity": 1,
+      "coverage": 2,
+      "citation": 2,
+      "total": 5,
+      "raw_output": "[\n  {\n    \"line\": 4,\n    \"severity\": \"WARNING\",\n    \"explanation\": \"Possible SQL injection vector through string-based query construction.\",\n    \"fix_suggestion\": \"Use parameterized queries or prepared statements to prevent SQL injection.\",\n    \"citation\": \"CWE-89\"\n  },\n  {\n    \"line\": 4,\n    \"severity\": \"WARNING\",\n    \"explanation\": \"Possible SQL injection vector through string-based query construction.\",\n    \"fix_suggestion\": \"Use parameterized queries or prepared statements to prevent SQL inj",
+      "parsed_findings": [
+        {
+          "line": 4,
+          "severity": "WARNING",
+          "explanation": "Possible SQL injection vector through string-based query construction.",
+          "fix_suggestion": "Use parameterized queries or prepared statements to prevent SQL injection.",
+          "citation": "CWE-89"
+        },
+        {
+          "line": 4,
+          "severity": "WARNING",
+          "explanation": "Possible SQL injection vector through string-based query construction.",
+          "fix_suggestion": "Use parameterized queries or prepared statements to prevent SQL injection.",
+          "citation": "B608"
+        },
+        {
+          "line": 4,
+          "severity": "WARNING",
+          "explanation": "Detected string concatenation with a non-literal variable in an aiopg Python SQL statement. This could lead to SQL injection if the variable is user-controlled and not properly sanitized.",
+          "fix_suggestion": "Use parameterized queries or prepared statements to prevent SQL injection.",
+          "citation": "semgrep:aiopg-sqli"
+        },
+        {
+          "line": 4,
+          "severity": "WARNING",
+          "explanation": "Detected user input used to manually construct a SQL string. This is usually bad practice because manual construction could accidentally result in a SQL injection.",
+          "fix_suggestion": "Use parameterized queries or prepared statements to prevent SQL injection.",
+          "citation": "semgrep:tainted-sql-string"
+        },
+        {
+          "line": 4,
+          "severity": "WARNING",
+          "explanation": "Detected string concatenation with a non-literal variable in a asyncpg Python SQL statement. This could lead to SQL injection if the variable is user-controlled and not properly sanitized.",
+          "fix_suggestion": "Use parameterized queries or prepared statements to prevent SQL injection.",
+          "citation": "semgrep:asyncpg-sqli"
+        },
+        {
+          "line": 1,
+          "severity": "INFO",
+          "explanation": "Missing module docstring.",
+          "fix_suggestion": "Add a docstring to the module to describe its purpose and functionality.",
+          "citation": "PYLINT C0114"
+        },
+        {
+          "line": 1,
+          "severity": "WARNING",
+          "explanation": "Unused import sqlite3.",
+          "fix_suggestion": "Remove the unused import to declutter the code.",
+          "citation": "PYLINT W0611"
+        },
+        {
+          "line": 3,
+          "severity": "INFO",
+          "explanation": "Missing function or method docstring.",
+          "fix_suggestion": "Add a docstring to the function to describe its purpose and functionality.",
+          "citation": "PYLINT C0116"
+        }
+      ]
+    },
+    {
+      "snippet": 2,
+      "validity": 1,
+      "coverage": 2,
+      "citation": 2,
+      "total": 5,
+      "raw_output": "[\n  {\n    \"line\": 1,\n    \"severity\": \"INFO\",\n    \"explanation\": \"Missing module docstring\",\n    \"fix_suggestion\": \"Add a docstring to the module\",\n    \"citation\": \"C0114\"\n  },\n  {\n    \"line\": 3,\n    \"severity\": \"INFO\",\n    \"explanation\": \"Missing function or method docstring\",\n    \"fix_suggestion\": \"Add a docstring to the function\",\n    \"citation\": \"C0116\"\n  },\n  {\n    \"line\": 4,\n    \"severity\": \"CRITICAL\",\n    \"explanation\": \"Starting a process with a shell, possible injection detected, securit",
+      "parsed_findings": [
+        {
+          "line": 1,
+          "severity": "INFO",
+          "explanation": "Missing module docstring",
+          "fix_suggestion": "Add a docstring to the module",
+          "citation": "C0114"
+        },
+        {
+          "line": 3,
+          "severity": "INFO",
+          "explanation": "Missing function or method docstring",
+          "fix_suggestion": "Add a docstring to the function",
+          "citation": "C0116"
+        },
+        {
+          "line": 4,
+          "severity": "CRITICAL",
+          "explanation": "Starting a process with a shell, possible injection detected, security issue",
+          "fix_suggestion": "Use the 'subprocess' module instead of 'os.system'",
+          "citation": "B605, CWE-78"
+        },
+        {
+          "line": 4,
+          "severity": "INFO",
+          "explanation": "Found user-controlled data used in a system call",
+          "fix_suggestion": "Use the 'subprocess' module instead of 'os.system'",
+          "citation": "[semgrep:dangerous-system-call-tainted-env-args]"
+        },
+        {
+          "line": 4,
+          "severity": "INFO",
+          "explanation": "Found user-controlled data used in a system call",
+          "fix_suggestion": "Use the 'subprocess' module instead of 'os.system'",
+          "citation": "[semgrep:dangerous-system-call]"
+        },
+        {
+          "line": 4,
+          "severity": "INFO",
+          "explanation": "Detected `os` function with argument tainted by `event` object",
+          "fix_suggestion": "Use the 'subprocess' module instead of 'os.system'",
+          "citation": "[semgrep:dangerous-system-call]"
+        }
+      ]
+    },
+    {
+      "snippet": 3,
+      "validity": 1,
+      "coverage": 4,
+      "citation": 2,
+      "total": 7,
+      "raw_output": "[\n  {\n    \"line\": 1,\n    \"severity\": \"INFO\",\n    \"explanation\": \"Consider possible security implications associated with the subprocess module.\",\n    \"fix_suggestion\": \"Use subprocess.run() instead of subprocess.call() and avoid using shell=True.\",\n    \"citation\": \"CWE-78\"\n  },\n  {\n    \"line\": 1,\n    \"severity\": \"INFO\",\n    \"explanation\": \"Missing module docstring.\",\n    \"fix_suggestion\": \"Add a docstring to the module.\",\n    \"citation\": \"PEP8:W0001\"\n  },\n  {\n    \"line\": 3,\n    \"severity\": \"INFO",
+      "parsed_findings": [
+        {
+          "line": 1,
+          "severity": "INFO",
+          "explanation": "Consider possible security implications associated with the subprocess module.",
+          "fix_suggestion": "Use subprocess.run() instead of subprocess.call() and avoid using shell=True.",
+          "citation": "CWE-78"
+        },
+        {
+          "line": 1,
+          "severity": "INFO",
+          "explanation": "Missing module docstring.",
+          "fix_suggestion": "Add a docstring to the module.",
+          "citation": "PEP8:W0001"
+        },
+        {
+          "line": 3,
+          "severity": "INFO",
+          "explanation": "Possible hardcoded password: 'hunter2'.",
+          "fix_suggestion": "Use environment variables or a secure secrets management system.",
+          "citation": "CWE-259"
+        },
+        {
+          "line": 5,
+          "severity": "INFO",
+          "explanation": "Missing function or method docstring.",
+          "fix_suggestion": "Add a docstring to the function.",
+          "citation": "PEP8:W0001"
+        },
+        {
+          "line": 6,
+          "severity": "CRITICAL",
+          "explanation": "subprocess call with shell=True identified, security issue.",
+          "fix_suggestion": "Use subprocess.run() instead of subprocess.call() and avoid using shell=True.",
+          "citation": "CWE-78"
+        },
+        {
+          "line": 6,
+          "severity": "CRITICAL",
+          "explanation": "subprocess call with shell=True identified, security issue.",
+          "fix_suggestion": "Use subprocess.run() instead of subprocess.call() and avoid using shell=True.",
+          "citation": "CWE-78"
+        },
+        {
+          "line": 6,
+          "severity": "CRITICAL",
+          "explanation": "subprocess call with shell=True identified, security issue.",
+          "fix_suggestion": "Use subprocess.run() instead of subprocess.call() and avoid using shell=True.",
+          "citation": "CWE-78"
+        }
+      ]
+    }
+  ],
+  "mistral": [
+    {
+      "snippet": 1,
+      "validity": 1,
+      "coverage": 2,
+      "citation": 1,
+      "total": 4,
+      "raw_output": "[\n  {\n    \"line\": 4,\n    \"severity\": \"CRITICAL\",\n    \"explanation\": \"Possible SQL injection vector through string-based query construction.\",\n    \"fix_suggestion\": \"Use parameterized queries to prevent SQL injection.\",\n    \"citation\": \"CWE: CWE-89\"\n  },\n  {\n    \"line\": 1,\n    \"severity\": \"WARNING\",\n    \"explanation\": \"Unused import sqlite3\",\n    \"fix_suggestion\": \"Remove the unused import\",\n    \"citation\": \"PYLINT W0611\"\n  },\n  {\n    \"line\": 3,\n    \"severity\": \"INFO\",\n    \"explanation\": \"Missing",
+      "parsed_findings": [
+        {
+          "line": 4,
+          "severity": "CRITICAL",
+          "explanation": "Possible SQL injection vector through string-based query construction.",
+          "fix_suggestion": "Use parameterized queries to prevent SQL injection.",
+          "citation": "CWE: CWE-89"
+        },
+        {
+          "line": 1,
+          "severity": "WARNING",
+          "explanation": "Unused import sqlite3",
+          "fix_suggestion": "Remove the unused import",
+          "citation": "PYLINT W0611"
+        },
+        {
+          "line": 3,
+          "severity": "INFO",
+          "explanation": "Missing function or method docstring",
+          "fix_suggestion": "Add a docstring for the function",
+          "citation": "PYLINT C0116"
+        }
+      ]
+    },
+    {
+      "snippet": 2,
+      "validity": 1,
+      "coverage": 2,
+      "citation": 1,
+      "total": 4,
+      "raw_output": "[\n  {\n    \"line\": 4,\n    \"severity\": \"CRITICAL\",\n    \"explanation\": \"Starting a process with a shell, possible injection detected, security issue. User-controlled data can be used in the system call, allowing a malicious actor to execute commands.\",\n    \"fix_suggestion\": \"Replace `os.system(cmd)` with `subprocess.run(cmd)`\",\n    \"citation\": \"BANDIT B605, semgrep:dangerous-system-call-tainted-env-args, semgrep:dangerous-system-call\"\n  },\n  {\n    \"line\": 3,\n    \"severity\": \"INFO\",\n    \"explanation",
+      "parsed_findings": [
+        {
+          "line": 4,
+          "severity": "CRITICAL",
+          "explanation": "Starting a process with a shell, possible injection detected, security issue. User-controlled data can be used in the system call, allowing a malicious actor to execute commands.",
+          "fix_suggestion": "Replace `os.system(cmd)` with `subprocess.run(cmd)`",
+          "citation": "BANDIT B605, semgrep:dangerous-system-call-tainted-env-args, semgrep:dangerous-system-call"
+        },
+        {
+          "line": 3,
+          "severity": "INFO",
+          "explanation": "Missing function or method docstring",
+          "fix_suggestion": "Add a docstring for the function `run_command`",
+          "citation": "PYLINT C0116"
+        },
+        {
+          "line": 1,
+          "severity": "INFO",
+          "explanation": "Missing module docstring",
+          "fix_suggestion": "Add a docstring for the module",
+          "citation": "PYLINT C0114"
+        }
+      ]
+    },
+    {
+      "snippet": 3,
+      "validity": 1,
+      "coverage": 4,
+      "citation": 1,
+      "total": 6,
+      "raw_output": "[\n  {\n    \"line\": 1,\n    \"severity\": \"CRITICAL\",\n    \"explanation\": \"Using 'shell=True' in subprocess call can lead to command injection vulnerabilities.\",\n    \"fix_suggestion\": \"Replace 'shell=True' with a list of arguments to avoid command injection.\",\n    \"citation\": \"semgrep:subprocess-shell-true\"\n  },\n  {\n    \"line\": 3,\n    \"severity\": \"CRITICAL\",\n    \"explanation\": \"Hardcoding secrets like 'hunter2' is a security risk.\",\n    \"fix_suggestion\": \"Store secrets securely, such as using environm",
+      "parsed_findings": [
+        {
+          "line": 1,
+          "severity": "CRITICAL",
+          "explanation": "Using 'shell=True' in subprocess call can lead to command injection vulnerabilities.",
+          "fix_suggestion": "Replace 'shell=True' with a list of arguments to avoid command injection.",
+          "citation": "semgrep:subprocess-shell-true"
+        },
+        {
+          "line": 3,
+          "severity": "CRITICAL",
+          "explanation": "Hardcoding secrets like 'hunter2' is a security risk.",
+          "fix_suggestion": "Store secrets securely, such as using environment variables or a secrets manager.",
+          "citation": "BANDIT B105"
+        },
+        {
+          "line": 5,
+          "severity": "INFO",
+          "explanation": "Missing function docstring makes it harder for others to understand the purpose and usage of the function.",
+          "fix_suggestion": "Add a docstring explaining the function's purpose and usage.",
+          "citation": "pep257:what-is-a-docstring"
+        }
+      ]
+    }
+  ]
+}
