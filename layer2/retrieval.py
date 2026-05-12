@@ -1,6 +1,10 @@
 """
 Layer 2: Parallel RAG retrieval across three FAISS indexes.
 
+Two-stage retrieval:
+  Stage 1 — Bi-encoder (all-MiniLM-L6-v2): retrieve top-20 per index via FAISS
+  Stage 2 — Cross-encoder (ms-marco-MiniLM-L-6-v2): re-rank to top-5
+
 Usage:
     from layer1.static_analysis import run_static_analysis
     from layer2.retrieval import Retriever
@@ -11,7 +15,7 @@ Usage:
 
 Return value:
     {
-        "security":    [ { ...chunk fields..., "score": float }, ... ],
+        "security":    [ { ...chunk fields..., "score": float, "ce_score": float }, ... ],
         "style":       [ ... ],
         "bug_pattern": [ ... ],
     }
@@ -22,12 +26,17 @@ from pathlib import Path
 
 import faiss
 import numpy as np
-from sentence_transformers import SentenceTransformer
+from sentence_transformers import CrossEncoder, SentenceTransformer
 
 from faiss_index.search import load_index
 
-_MODEL_PATH = Path(__file__).parent.parent / "models" / "all-MiniLM-L6-v2"
-_INDEX_NAMES = ["security", "style", "bug_pattern"]
+_MODEL_PATH       = Path(__file__).parent.parent / "models" / "all-MiniLM-L6-v2"
+_CE_MODEL_PATH    = Path(__file__).parent.parent / "models" / "cross-encoder-ms-marco"
+_CE_MODEL_HF_ID   = "cross-encoder/ms-marco-MiniLM-L-6-v2"
+_INDEX_NAMES      = ["security", "style", "bug_pattern"]
+
+# Bi-encoder retrieves this many candidates; cross-encoder re-ranks to top_k
+_BIENCODER_CANDIDATES = 20
 
 
 def _search_index(index: faiss.Index, meta: list[dict], vec: np.ndarray, top_k: int) -> list[dict]:
@@ -42,9 +51,27 @@ def _search_index(index: faiss.Index, meta: list[dict], vec: np.ndarray, top_k: 
     return results
 
 
+def _rerank(cross_encoder: CrossEncoder, query: str, candidates: list[dict], top_k: int) -> list[dict]:
+    """Score (query, text_preview) pairs with the cross-encoder and return top_k."""
+    texts = [c.get("text_preview") or c.get("title") or "" for c in candidates]
+    pairs = [[query, t] for t in texts]
+    ce_scores = cross_encoder.predict(pairs)
+
+    for chunk, ce_score in zip(candidates, ce_scores):
+        chunk["ce_score"] = float(ce_score)
+
+    reranked = sorted(candidates, key=lambda c: c["ce_score"], reverse=True)
+    return reranked[:top_k]
+
+
 class Retriever:
     def __init__(self):
         self._model = SentenceTransformer(str(_MODEL_PATH))
+
+        # Load cross-encoder from local path if downloaded, else from HF Hub
+        ce_source = str(_CE_MODEL_PATH) if (_CE_MODEL_PATH / "config.json").exists() else _CE_MODEL_HF_ID
+        self._cross_encoder = CrossEncoder(ce_source)
+
         self._indexes = {
             name: load_index(name) for name in _INDEX_NAMES
         }
@@ -67,20 +94,25 @@ class Retriever:
         ).astype(np.float32)
 
         tasks = {
-            "security":    (self._indexes["security"],    vecs[0:1]),
-            "style":       (self._indexes["style"],       vecs[1:2]),
-            "bug_pattern": (self._indexes["bug_pattern"], vecs[2:3]),
+            "security":    (self._indexes["security"],    vecs[0:1], sec_query),
+            "style":       (self._indexes["style"],       vecs[1:2], style_query),
+            "bug_pattern": (self._indexes["bug_pattern"], vecs[2:3], bug_query),
         }
 
-        results = {}
+        # Stage 1: retrieve top-20 per index in parallel
+        candidates = {}
         with ThreadPoolExecutor(max_workers=3) as pool:
             futures = {
-                pool.submit(_search_index, idx, meta, vec, top_k): name
-                for name, (idx, meta), vec in (
-                    (name, tasks[name][0], tasks[name][1]) for name in tasks
-                )
+                pool.submit(_search_index, index, meta, vec, _BIENCODER_CANDIDATES): name
+                for name, ((index, meta), vec, _query) in tasks.items()
             }
             for future in as_completed(futures):
-                results[futures[future]] = future.result()
+                candidates[futures[future]] = future.result()
+
+        # Stage 2: cross-encoder re-rank to top_k per index
+        results = {
+            name: _rerank(self._cross_encoder, tasks[name][2], candidates[name], top_k)
+            for name in _INDEX_NAMES
+        }
 
         return results

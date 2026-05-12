@@ -1,12 +1,14 @@
 """
-Download quantized (Q4_K_M GGUF) LLM models for PythonGuard Layer 3.
+Download all models for PythonGuard:
+  - LLMs (Layer 3): Q4_K_M GGUF files (~4 GB each) under models/<key>/
+  - Cross-encoder (Layer 2): ms-marco-MiniLM-L-6-v2 (~80 MB) under models/cross-encoder-ms-marco/
 
-Each model is a single ~4 GB GGUF file saved under models/<key>/.
-Skips any model whose file is already present.
+Skips any model whose files are already present.
 
 Usage:
-    python3 download_llm_models.py                          # all three
-    python3 download_llm_models.py --models qwen2.5 mistral # subset
+    python3 download_llm_models.py                          # all LLMs + cross-encoder
+    python3 download_llm_models.py --models qwen2.5 mistral # subset of LLMs only
+    python3 download_llm_models.py --skip-cross-encoder     # LLMs only
 """
 
 import argparse
@@ -68,23 +70,52 @@ def download_model(key: str):
     print(f"  [{key}] Saved → {dest_dir / filename}")
 
 
+def download_cross_encoder():
+    from sentence_transformers import CrossEncoder
+    dest = MODELS_DIR / "cross-encoder-ms-marco"
+    if (dest / "config.json").exists():
+        print(f"  [cross-encoder] Already present at {dest} — skipping.")
+        return
+    print(f"  [cross-encoder] Downloading ms-marco-MiniLM-L-6-v2 (~80 MB) ...")
+    dest.mkdir(parents=True, exist_ok=True)
+    model = CrossEncoder("cross-encoder/ms-marco-MiniLM-L-6-v2")
+    model.save(str(dest))
+    print(f"  [cross-encoder] Saved → {dest}")
+
+
 def main():
-    parser = argparse.ArgumentParser(description="Download PythonGuard GGUF models")
+    parser = argparse.ArgumentParser(description="Download PythonGuard models")
     parser.add_argument(
         "--models",
         nargs="+",
         choices=list(MODELS),
         default=list(MODELS),
         metavar="MODEL",
-        help=f"Models to download (default: all). Choices: {list(MODELS)}",
+        help=f"LLMs to download (default: all). Choices: {list(MODELS)}",
+    )
+    parser.add_argument(
+        "--skip-cross-encoder",
+        action="store_true",
+        help="Skip downloading the cross-encoder re-ranking model",
     )
     args = parser.parse_args()
 
     MODELS_DIR.mkdir(exist_ok=True)
     print(f"Models directory : {MODELS_DIR}")
-    print(f"Quantization     : Q4_K_M GGUF (~4 GB per model)\n")
+    print(f"Quantization     : Q4_K_M GGUF (~4 GB per LLM)\n")
 
     failed = []
+
+    # Cross-encoder (small, download first)
+    if not args.skip_cross_encoder:
+        print(f"{'─'*60}")
+        try:
+            download_cross_encoder()
+        except Exception as e:
+            print(f"  [cross-encoder] ERROR: {e}", file=sys.stderr)
+            failed.append("cross-encoder")
+
+    # LLMs
     for key in args.models:
         print(f"{'─'*60}")
         try:
@@ -94,7 +125,7 @@ def main():
             failed.append(key)
 
     print(f"\n{'─'*60}")
-    succeeded = [k for k in args.models if k not in failed]
+    succeeded = [k for k in (["cross-encoder"] + args.models) if k not in failed]
     print(f"Downloaded : {succeeded}")
     if failed:
         print(f"Failed     : {failed}")
