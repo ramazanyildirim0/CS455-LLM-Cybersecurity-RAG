@@ -609,6 +609,109 @@ def _improper_encoding_findings(code: str) -> list[dict]:
     return findings
 
 
+def _redos_findings(code: str) -> list[dict]:
+    """Detect CWE-730: user-controlled string passed as regex pattern to re.* functions."""
+    try:
+        tree = ast.parse(code)
+    except SyntaxError:
+        return []
+
+    tainted: dict[str, int] = {}
+    for node in ast.walk(tree):
+        if not isinstance(node, (ast.Assign, ast.AnnAssign)):
+            continue
+        value = node.value if isinstance(node, ast.Assign) else getattr(node, "value", None)
+        if value is None:
+            continue
+        if _is_taint_source(value) or (
+            isinstance(value, ast.Call) and _get_call_name(value.func) == "input"
+        ):
+            targets = node.targets if isinstance(node, ast.Assign) else [node.target]
+            for t in targets:
+                if isinstance(t, ast.Name):
+                    tainted[t.id] = node.lineno
+
+    _RE_FUNCS = {"search", "match", "fullmatch", "findall", "finditer",
+                 "sub", "subn", "compile", "split"}
+    findings: list[dict] = []
+
+    for node in ast.walk(tree):
+        if not isinstance(node, ast.Call):
+            continue
+        if not (isinstance(node.func, ast.Attribute)
+                and node.func.attr in _RE_FUNCS
+                and isinstance(node.func.value, ast.Name)
+                and node.func.value.id == "re"):
+            continue
+        if not node.args:
+            continue
+        if _contains_tainted(node.args[0], tainted):
+            findings.append({
+                "tool":       "heuristic",
+                "line":       node.lineno,
+                "severity":   "WARNING",
+                "code":       "H009",
+                "message":    (
+                    "User-controlled string passed as regex pattern — attacker can supply a "
+                    "catastrophically backtracking regex causing denial of service (CWE-730)."
+                ),
+                "cwe_ids":    ["CWE-730"],
+                "confidence": "MEDIUM",
+            })
+
+    return findings
+
+
+_SENSITIVE_LOG_NAMES = frozenset({
+    "sql", "query", "stmt", "statement", "cursor",
+    "password", "passwd", "pwd", "secret", "token",
+    "api_key", "apikey", "credential", "auth",
+})
+
+
+def _sensitive_data_log_findings(code: str) -> list[dict]:
+    """Detect CWE-200: sensitive internal data (SQL queries, credentials) logged."""
+    try:
+        tree = ast.parse(code)
+    except SyntaxError:
+        return []
+
+    def _contains_sensitive_name(node: ast.expr) -> bool:
+        for n in ast.walk(node):
+            if isinstance(n, ast.Name) and n.id.lower() in _SENSITIVE_LOG_NAMES:
+                return True
+        return False
+
+    _LOG_METHODS = {"debug", "info", "warning", "warn", "error", "critical",
+                    "exception", "log", "fatal"}
+    findings: list[dict] = []
+
+    for node in ast.walk(tree):
+        if not isinstance(node, ast.Call):
+            continue
+        if not (isinstance(node.func, ast.Attribute)
+                and node.func.attr in _LOG_METHODS
+                and isinstance(node.func.value, ast.Name)):
+            continue
+        for arg in node.args:
+            if _contains_sensitive_name(arg):
+                findings.append({
+                    "tool":       "heuristic",
+                    "line":       node.lineno,
+                    "severity":   "WARNING",
+                    "code":       "H010",
+                    "message":    (
+                        "Sensitive data (SQL query, credential, or secret) included in a "
+                        "logging call — may expose internals to log aggregators (CWE-200)."
+                    ),
+                    "cwe_ids":    ["CWE-200"],
+                    "confidence": "MEDIUM",
+                })
+                break
+
+    return findings
+
+
 def _object_ref_comparison_findings(code: str) -> list[dict]:
     """Detect CWE-595: `is`/`is not` used to compare non-singleton objects."""
     try:
@@ -685,6 +788,8 @@ def run_static_analysis(code: str) -> list[dict]:
         + _info_exposure_findings(code)
         + _improper_encoding_findings(code)
         + _object_ref_comparison_findings(code)
+        + _redos_findings(code)
+        + _sensitive_data_log_findings(code)
     )
     all_findings = bandit_findings + pylint_findings + heuristic_findings
     all_findings.sort(key=lambda f: f["line"])

@@ -72,6 +72,8 @@ _FIX_HINTS: dict[str, str] = {
     "H006":  "Catch exceptions internally and return a generic error message; never expose traceback.format_exc() or str(e) to clients.",
     "H007":  "Replace regex-based HTML filtering with a dedicated library such as bleach or markupsafe.",
     "H008":  "Use `==`/`!=` to compare object values; reserve `is`/`is not` only for None, True, and False.",
+    "H009":  "Validate or reject user-supplied regex patterns; never pass untrusted input directly as a regex pattern.",
+    "H010":  "Do not log sensitive data (SQL queries, credentials) — log a generic message or sanitized reference instead.",
     "CWE-611": "Use defusedxml or configure lxml with resolve_entities=False to prevent XXE.",
     "CWE-347": "Always verify JWT signatures with the correct algorithm and never use algorithm='none'.",
 }

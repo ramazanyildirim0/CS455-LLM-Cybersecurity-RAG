@@ -24,12 +24,12 @@ _CWE_EQUIVALENCES: dict[str, set[str]] = {
     "CWE-89":  {"CWE-20", "B608"},
     "CWE-90":  {"CWE-20", "CWE-89"},            # LDAP Injection
     "CWE-91":  {"CWE-20", "CWE-89"},            # XPath Injection
-    "CWE-94":  {"CWE-78", "B102", "B104"},
+    "CWE-94":  {"CWE-78", "CWE-215", "B102", "B104", "B201"},
     "CWE-95":  {"CWE-78", "CWE-94", "B307"},
-    "CWE-79":  {"CWE-80", "CWE-20", "H001", "B701", "B702"},
+    "CWE-79":  {"CWE-80", "CWE-20", "CWE-113", "H001", "B701", "B702"},
     "CWE-80":  {"CWE-79", "CWE-20", "H001"},
     "CWE-83":  {"CWE-79", "CWE-80"},
-    "CWE-113": {"CWE-20", "CWE-116"},           # HTTP Response Splitting
+    "CWE-113": {"CWE-20", "CWE-79", "CWE-116"}, # HTTP Response Splitting
     "CWE-116": {"CWE-20", "CWE-113", "H007"},   # Improper Encoding / Escaping
     "CWE-117": {"CWE-20", "CWE-116", "H005"},   # Log Injection
     "CWE-252": {"CWE-20"},                      # Unchecked Return Value
@@ -37,7 +37,7 @@ _CWE_EQUIVALENCES: dict[str, set[str]] = {
     "CWE-601": {"CWE-20", "H001"},              # Open Redirect
     "CWE-641": {"CWE-20", "CWE-601"},           # Improper Restriction of Names
     "CWE-643": {"CWE-20", "CWE-611"},           # XPath Injection
-    "CWE-730": {"CWE-400", "CWE-20"},           # ReDoS
+    "CWE-730": {"CWE-400", "CWE-20", "H009"},   # ReDoS
     "CWE-943": {"CWE-20", "CWE-89"},            # Improper Neutralization in Data Query
     "CWE-99":  {"CWE-20", "CWE-641"},           # Improper Control of Resource Identifiers
 
@@ -51,8 +51,9 @@ _CWE_EQUIVALENCES: dict[str, set[str]] = {
     "CWE-703": {"CWE-22", "CWE-367", "CWE-434"},# Improper Check / Exception Handling
 
     # ── Weak Cryptography family ───────────────────────────────────────────
-    "CWE-327": {"CWE-326", "CWE-328", "CWE-329", "CWE-330", "CWE-1204",
+    "CWE-327": {"CWE-326", "CWE-328", "CWE-329", "CWE-330", "CWE-759", "CWE-1204",
                 "B303", "B304", "B305", "B413"},
+    "CWE-759": {"CWE-327", "CWE-328", "CWE-330", "B303", "B324"},  # Hash without Salt
     "CWE-326": {"CWE-327", "CWE-328", "B505"},  # Inadequate Encryption Strength
     "CWE-328": {"CWE-327", "CWE-326"},          # Reversible One-Way Hash
 
@@ -101,12 +102,12 @@ _CWE_EQUIVALENCES: dict[str, set[str]] = {
 
     # ── XXE / XML ──────────────────────────────────────────────────────────
     "CWE-611": {"CWE-20", "CWE-643", "CWE-776", "H002", "B405", "B314", "B320"},
-    "CWE-776": {"CWE-611"},                         # Billion Laughs / DTD bomb
+    "CWE-776": {"CWE-611", "CWE-20"},               # Billion Laughs / DTD bomb
 
     # ── Information Exposure family ────────────────────────────────────────
-    "CWE-200": {"CWE-209", "CWE-215", "CWE-532"},
+    "CWE-200": {"CWE-209", "CWE-215", "CWE-532", "H010"},
     "CWE-209": {"CWE-200", "CWE-215", "H006"},      # Info in Error Messages
-    "CWE-215": {"CWE-200", "CWE-209"},              # Info in Debug Messages
+    "CWE-215": {"CWE-200", "CWE-209", "CWE-94", "B201"},  # Info in Debug Messages
 
     # ── Miscellaneous ──────────────────────────────────────────────────────
     "CWE-193": set(),    # Off-by-one — pure logic error, no useful CWE equivalence
