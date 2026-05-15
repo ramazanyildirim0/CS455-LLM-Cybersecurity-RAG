@@ -769,6 +769,7 @@ def _object_ref_comparison_findings(code: str) -> list[dict]:
 _KEY_NAMES = frozenset({
     "key", "aes_key", "secret_key", "enc_key", "priv_key",
     "private_key", "iv", "nonce", "salt", "master_key",
+    "api_key", "access_token", "secret_token", "auth_token",
 })
 
 
@@ -785,28 +786,41 @@ def _is_bytes_literal(node: ast.expr) -> bool:
 
 
 def _hardcoded_key_findings(code: str) -> list[dict]:
-    """Detect CWE-321: hardcoded cryptographic key/IV assigned as a bytes literal."""
+    """Detect CWE-321: hardcoded cryptographic key/IV/API key assigned as a literal."""
     try:
         tree = ast.parse(code)
     except SyntaxError:
         return []
 
+    def _is_key_value(node: ast.expr) -> bool:
+        """True if node is a bytes literal or a long string (≥20 chars, looks like a token)."""
+        if _is_bytes_literal(node):
+            return True
+        if isinstance(node, ast.Constant) and isinstance(node.value, str) and len(node.value) >= 20:
+            return True
+        return False
+
     findings: list[dict] = []
     for node in ast.walk(tree):
         if not isinstance(node, ast.Assign):
             continue
-        if not _is_bytes_literal(node.value):
+        if not _is_key_value(node.value):
             continue
         for target in node.targets:
-            if isinstance(target, ast.Name) and target.id.lower() in _KEY_NAMES:
+            name = None
+            if isinstance(target, ast.Name):
+                name = target.id
+            elif isinstance(target, ast.Attribute):
+                name = target.attr
+            if name and name.lower() in _KEY_NAMES:
                 findings.append({
                     "tool":       "heuristic",
                     "line":       node.lineno,
                     "severity":   "CRITICAL",
                     "code":       "H011",
                     "message":    (
-                        f"Hardcoded cryptographic key/IV: '{target.id}' is assigned a "
-                        "literal bytes value — never hard-code key material in source code (CWE-321)."
+                        f"Hardcoded cryptographic key/token: '{name}' is assigned a "
+                        "literal value — never hard-code key material or API keys in source code (CWE-321)."
                     ),
                     "cwe_ids":    ["CWE-321"],
                     "confidence": "HIGH",
@@ -814,39 +828,62 @@ def _hardcoded_key_findings(code: str) -> list[dict]:
     return findings
 
 
+_CBC_MODE_FUNCS = frozenset({"CBC", "CTR", "GCM", "CFB", "OFB"})
+
+
 def _static_iv_findings(code: str) -> list[dict]:
-    """Detect CWE-329/760: static IV/nonce passed to AES cipher constructor."""
+    """Detect CWE-329/760: static IV/nonce passed to AES or cryptography.hazmat cipher."""
     try:
         tree = ast.parse(code)
     except SyntaxError:
         return []
 
+    # Pass 1 — collect variable names assigned bytes literals (e.g. static_vector = b'x'*16)
+    bytes_vars: set[str] = set()
+    for node in ast.walk(tree):
+        if isinstance(node, ast.Assign) and _is_bytes_literal(node.value):
+            for target in node.targets:
+                if isinstance(target, ast.Name):
+                    bytes_vars.add(target.id)
+
+    def _is_static_iv(arg: ast.expr) -> bool:
+        if _is_bytes_literal(arg):
+            return True
+        if isinstance(arg, ast.Name) and arg.id in bytes_vars:
+            return True
+        return False
+
     findings: list[dict] = []
+
     for node in ast.walk(tree):
         if not isinstance(node, ast.Call):
             continue
-        # Match AES.new(...) or Cipher.new(...) — any attribute call named 'new'
         name = _get_call_name(node.func)
-        if name != "new":
-            continue
-        # Need at least 3 positional args: key, mode, iv
-        if len(node.args) < 3:
-            continue
-        iv_arg = node.args[2]
-        if _is_bytes_literal(iv_arg):
-            findings.append({
-                "tool":       "heuristic",
-                "line":       node.lineno,
-                "severity":   "CRITICAL",
-                "code":       "H012",
-                "message":    (
-                    "Static IV/nonce passed to cipher constructor — using a fixed IV "
-                    "makes CBC/CTR mode deterministic and breaks semantic security (CWE-329/CWE-760)."
-                ),
-                "cwe_ids":    ["CWE-329", "CWE-760"],
-                "confidence": "HIGH",
-            })
+
+        # Pattern 1: AES.new(key, mode, iv) — 3rd positional arg is IV
+        if name == "new" and len(node.args) >= 3 and _is_static_iv(node.args[2]):
+            findings.append(_static_iv_finding(node.lineno))
+
+        # Pattern 2: modes.CBC(iv) / modes.CTR(iv) / modes.GCM(iv) from cryptography lib
+        elif name in _CBC_MODE_FUNCS and node.args and _is_static_iv(node.args[0]):
+            findings.append(_static_iv_finding(node.lineno))
+
     return findings
+
+
+def _static_iv_finding(line: int) -> dict:
+    return {
+        "tool":       "heuristic",
+        "line":       line,
+        "severity":   "CRITICAL",
+        "code":       "H012",
+        "message":    (
+            "Static IV/nonce passed to cipher constructor — using a fixed IV "
+            "makes CBC/CTR mode deterministic and breaks semantic security (CWE-329/CWE-760)."
+        ),
+        "cwe_ids":    ["CWE-329", "CWE-760"],
+        "confidence": "HIGH",
+    }
 
 
 # ---------------------------------------------------------------------------
@@ -864,37 +901,29 @@ def _bare_except_findings(code: str) -> list[dict]:
     for node in ast.walk(tree):
         if not isinstance(node, ast.ExceptHandler):
             continue
-        # Bare except: or except Exception:
-        is_bare = node.type is None
-        is_broad = (isinstance(node.type, ast.Name) and node.type.id == "Exception")
-        if not (is_bare or is_broad):
-            continue
-        # Body is only pass or a string literal (docstring-style comment)
+        # Body is only pass — silently swallows the exception regardless of type
         body = node.body
-        if len(body) == 1:
-            stmt = body[0]
-            if isinstance(stmt, ast.Pass):
-                silent = True
-            elif isinstance(stmt, ast.Expr) and isinstance(stmt.value, ast.Constant):
-                silent = True
-            else:
-                silent = False
+        silent = len(body) == 1 and isinstance(body[0], ast.Pass)
+        if not silent:
+            continue
+        if node.type is None:
+            label = "bare except"
+        elif isinstance(node.type, ast.Name):
+            label = f"except {node.type.id}"
         else:
-            silent = False
-        if silent:
-            label = "bare except" if is_bare else "except Exception"
-            findings.append({
-                "tool":       "heuristic",
-                "line":       node.lineno,
-                "severity":   "WARNING",
-                "code":       "H013",
-                "message":    (
-                    f"{label}: pass silently swallows all exceptions — errors are hidden "
-                    "and security-relevant failures may go undetected (CWE-703)."
-                ),
-                "cwe_ids":    ["CWE-703"],
-                "confidence": "HIGH",
-            })
+            label = "except"
+        findings.append({
+            "tool":       "heuristic",
+            "line":       node.lineno,
+            "severity":   "WARNING",
+            "code":       "H013",
+            "message":    (
+                f"{label}: pass silently swallows exceptions — errors are hidden "
+                "and security-relevant failures may go undetected (CWE-703)."
+            ),
+            "cwe_ids":    ["CWE-703"],
+            "confidence": "HIGH",
+        })
     return findings
 
 
@@ -976,6 +1005,7 @@ _OBSOLETE_FUNCTIONS: dict[str, str] = {
     "commands.getoutput":   "subprocess.run",
     "commands.getstatusoutput": "subprocess.run",
     "distutils.spawn.find_executable": "shutil.which",
+    "time.clock":           "time.perf_counter or time.process_time",
 }
 
 

@@ -187,10 +187,12 @@ def _anchor_layer1(llm_findings: list[dict], layer1_findings: list[dict]) -> lis
     if not important:
         return llm_findings
 
+    # Only count a line as covered if the existing finding has adequate severity.
+    # INFO-level LLM findings should not block CRITICAL/WARNING Layer 1 anchors.
     covered = {
         f.get("line")
         for f in llm_findings
-        if isinstance(f, dict) and f.get("line") is not None
+        if isinstance(f, dict) and f.get("severity") in _ANCHOR_SEVERITIES
     }
 
     anchored = list(llm_findings)

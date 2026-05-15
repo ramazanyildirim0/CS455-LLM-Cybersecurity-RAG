@@ -25,7 +25,7 @@ _CWE_EQUIVALENCES: dict[str, set[str]] = {
     "CWE-89":  {"CWE-20", "B608"},
     "CWE-90":  {"CWE-20", "CWE-89"},            # LDAP Injection
     "CWE-91":  {"CWE-20", "CWE-89"},            # XPath Injection
-    "CWE-94":  {"CWE-78", "CWE-215", "B102", "B104", "B201"},
+    "CWE-94":  {"CWE-78", "CWE-95", "CWE-215", "B102", "B104", "B201"},
     "CWE-95":  {"CWE-78", "CWE-94", "B307"},
     "CWE-79":  {"CWE-80", "CWE-83", "CWE-87", "CWE-20", "CWE-113", "H001", "B701", "B702"},
     "CWE-80":  {"CWE-79", "CWE-83", "CWE-20", "H001"},
@@ -36,12 +36,12 @@ _CWE_EQUIVALENCES: dict[str, set[str]] = {
     "CWE-117": {"CWE-20", "CWE-116", "H005"},   # Log Injection
     "CWE-252": {"CWE-20"},                      # Unchecked Return Value
     "CWE-400": {"CWE-20", "CWE-730"},           # Uncontrolled Resource Consumption
-    "CWE-601": {"CWE-20", "H001"},              # Open Redirect
+    "CWE-601": {"CWE-20", "CWE-79", "CWE-80", "H001"},  # Open Redirect
     "CWE-641": {"CWE-20", "CWE-601"},           # Improper Restriction of Names
     "CWE-643": {"CWE-20", "CWE-611"},           # XPath Injection
     "CWE-730": {"CWE-400", "CWE-20", "H009"},   # ReDoS
     "CWE-943": {"CWE-20", "CWE-89"},            # Improper Neutralization in Data Query
-    "CWE-99":  {"CWE-20", "CWE-641"},           # Improper Control of Resource Identifiers
+    "CWE-99":  {"CWE-20", "CWE-22", "CWE-641"},  # Improper Control of Resource Identifiers
 
     # ── Path Traversal / File Operations family ────────────────────────────
     "CWE-22":  {"CWE-20", "CWE-23", "CWE-36", "CWE-367", "CWE-377", "CWE-379",
@@ -53,7 +53,7 @@ _CWE_EQUIVALENCES: dict[str, set[str]] = {
     "CWE-703": {"CWE-22", "CWE-367", "CWE-434"},# Improper Check / Exception Handling
 
     # ── Weak Cryptography family ───────────────────────────────────────────
-    "CWE-327": {"CWE-326", "CWE-328", "CWE-329", "CWE-330", "CWE-759", "CWE-1204",
+    "CWE-327": {"CWE-326", "CWE-328", "CWE-329", "CWE-330", "CWE-759", "CWE-760", "CWE-1204",
                 "B303", "B304", "B305", "B413"},
     "CWE-759": {"CWE-327", "CWE-328", "CWE-330", "B303", "B324"},  # Hash without Salt
     "CWE-326": {"CWE-327", "CWE-328", "B505"},  # Inadequate Encryption Strength
