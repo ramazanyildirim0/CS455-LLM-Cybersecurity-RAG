@@ -36,6 +36,10 @@ Analyze the provided Python code for REAL, EXPLOITABLE security vulnerabilities.
 22. Information Exposure (CWE-209): traceback.format_exc() / str(e) returned in a web response
 23. Improper Encoding (CWE-116): regex used to strip HTML tags instead of bleach/markupsafe
 24. Object Reference Comparison (CWE-595): `is`/`is not` used to compare non-singleton objects
+25. Improper Exception Handling (CWE-703): bare `except: pass` or `except Exception: pass` that silently swallows all errors
+26. TOCTOU Race Condition (CWE-367/414): `os.path.exists(f)` or `os.access(f)` followed by `open(f)` without atomic O_EXCL
+27. Obsolete Function (CWE-477): use of deprecated functions such as `cgi.escape()`, `os.popen()`, `commands.getoutput()`
+28. Missing Authorization (CWE-285/283): accessing or modifying a resource without verifying the caller's ownership or role
 
 ## STRICT RULES
 - If Bandit/pylint flagged a line → ALWAYS include it; those are ground truth

@@ -20,15 +20,17 @@ _CWE_EQUIVALENCES: dict[str, set[str]] = {
                 "CWE-943", "B301", "B302", "B303", "B608", "B605", "B602",
                 "H001", "H002", "H005"},
     "CWE-74":  {"CWE-20", "CWE-78", "CWE-79", "CWE-89"},
-    "CWE-78":  {"CWE-20", "B602", "B603", "B604", "B605", "B606", "B607"},
+    "CWE-78":  {"CWE-20", "CWE-94", "CWE-95", "B102", "B307",
+                "B602", "B603", "B604", "B605", "B606", "B607"},
     "CWE-89":  {"CWE-20", "B608"},
     "CWE-90":  {"CWE-20", "CWE-89"},            # LDAP Injection
     "CWE-91":  {"CWE-20", "CWE-89"},            # XPath Injection
     "CWE-94":  {"CWE-78", "CWE-215", "B102", "B104", "B201"},
     "CWE-95":  {"CWE-78", "CWE-94", "B307"},
-    "CWE-79":  {"CWE-80", "CWE-20", "CWE-113", "H001", "B701", "B702"},
-    "CWE-80":  {"CWE-79", "CWE-20", "H001"},
-    "CWE-83":  {"CWE-79", "CWE-80"},
+    "CWE-79":  {"CWE-80", "CWE-83", "CWE-87", "CWE-20", "CWE-113", "H001", "B701", "B702"},
+    "CWE-80":  {"CWE-79", "CWE-83", "CWE-20", "H001"},
+    "CWE-83":  {"CWE-79", "CWE-80", "CWE-87"},
+    "CWE-87":  {"CWE-79", "CWE-80", "CWE-83"},
     "CWE-113": {"CWE-20", "CWE-79", "CWE-116"}, # HTTP Response Splitting
     "CWE-116": {"CWE-20", "CWE-113", "H007"},   # Improper Encoding / Escaping
     "CWE-117": {"CWE-20", "CWE-116", "H005"},   # Log Injection

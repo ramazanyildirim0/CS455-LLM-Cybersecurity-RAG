@@ -76,6 +76,16 @@ _FIX_HINTS: dict[str, str] = {
     "H010":  "Do not log sensitive data (SQL queries, credentials) — log a generic message or sanitized reference instead.",
     "CWE-611": "Use defusedxml or configure lxml with resolve_entities=False to prevent XXE.",
     "CWE-347": "Always verify JWT signatures with the correct algorithm and never use algorithm='none'.",
+    "H011":  "Load key material from environment variables or a secrets manager; never hard-code bytes literals.",
+    "H012":  "Generate a random IV per encryption with os.urandom(16) instead of a hard-coded bytes literal.",
+    "H013":  "Catch specific exceptions and handle or re-raise them; avoid silent except/pass blocks.",
+    "H014":  "Use os.open() with O_CREAT|O_EXCL for atomic file creation instead of check-then-open.",
+    "H015":  "Replace the obsolete function with its modern, maintained equivalent as noted in the warning.",
+    "CWE-321": "Load key material from environment variables or a hardware security module.",
+    "CWE-329": "Generate a fresh random IV with os.urandom(16) for every encryption operation.",
+    "CWE-703": "Catch specific exception types and propagate or log them; never silently swallow errors.",
+    "CWE-367": "Use atomic file operations (O_CREAT|O_EXCL) to eliminate the TOCTOU window.",
+    "CWE-477": "Replace the deprecated function with its modern equivalent shown in the warning.",
 }
 
 
@@ -172,6 +182,7 @@ def _anchor_layer1(llm_findings: list[dict], layer1_findings: list[dict]) -> lis
         f for f in layer1_findings
         if f["severity"] in _ANCHOR_SEVERITIES
         and f.get("code") not in _NON_SECURITY_CODES
+        and not f.get("code", "").startswith("E04")  # E04xx = import/module errors, env artifacts
     ]
     if not important:
         return llm_findings

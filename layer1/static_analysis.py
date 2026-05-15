@@ -763,6 +763,273 @@ def _object_ref_comparison_findings(code: str) -> list[dict]:
 
 
 # ---------------------------------------------------------------------------
+# Crypto heuristics (H011, H012)
+# ---------------------------------------------------------------------------
+
+_KEY_NAMES = frozenset({
+    "key", "aes_key", "secret_key", "enc_key", "priv_key",
+    "private_key", "iv", "nonce", "salt", "master_key",
+})
+
+
+def _is_bytes_literal(node: ast.expr) -> bool:
+    """True if node is a bytes constant or b'...' * n BinOp."""
+    if isinstance(node, ast.Constant) and isinstance(node.value, bytes):
+        return True
+    if (isinstance(node, ast.BinOp)
+            and isinstance(node.op, ast.Mult)
+            and isinstance(node.left, ast.Constant)
+            and isinstance(node.left.value, bytes)):
+        return True
+    return False
+
+
+def _hardcoded_key_findings(code: str) -> list[dict]:
+    """Detect CWE-321: hardcoded cryptographic key/IV assigned as a bytes literal."""
+    try:
+        tree = ast.parse(code)
+    except SyntaxError:
+        return []
+
+    findings: list[dict] = []
+    for node in ast.walk(tree):
+        if not isinstance(node, ast.Assign):
+            continue
+        if not _is_bytes_literal(node.value):
+            continue
+        for target in node.targets:
+            if isinstance(target, ast.Name) and target.id.lower() in _KEY_NAMES:
+                findings.append({
+                    "tool":       "heuristic",
+                    "line":       node.lineno,
+                    "severity":   "CRITICAL",
+                    "code":       "H011",
+                    "message":    (
+                        f"Hardcoded cryptographic key/IV: '{target.id}' is assigned a "
+                        "literal bytes value — never hard-code key material in source code (CWE-321)."
+                    ),
+                    "cwe_ids":    ["CWE-321"],
+                    "confidence": "HIGH",
+                })
+    return findings
+
+
+def _static_iv_findings(code: str) -> list[dict]:
+    """Detect CWE-329/760: static IV/nonce passed to AES cipher constructor."""
+    try:
+        tree = ast.parse(code)
+    except SyntaxError:
+        return []
+
+    findings: list[dict] = []
+    for node in ast.walk(tree):
+        if not isinstance(node, ast.Call):
+            continue
+        # Match AES.new(...) or Cipher.new(...) — any attribute call named 'new'
+        name = _get_call_name(node.func)
+        if name != "new":
+            continue
+        # Need at least 3 positional args: key, mode, iv
+        if len(node.args) < 3:
+            continue
+        iv_arg = node.args[2]
+        if _is_bytes_literal(iv_arg):
+            findings.append({
+                "tool":       "heuristic",
+                "line":       node.lineno,
+                "severity":   "CRITICAL",
+                "code":       "H012",
+                "message":    (
+                    "Static IV/nonce passed to cipher constructor — using a fixed IV "
+                    "makes CBC/CTR mode deterministic and breaks semantic security (CWE-329/CWE-760)."
+                ),
+                "cwe_ids":    ["CWE-329", "CWE-760"],
+                "confidence": "HIGH",
+            })
+    return findings
+
+
+# ---------------------------------------------------------------------------
+# Control-flow heuristics (H013, H014, H015)
+# ---------------------------------------------------------------------------
+
+def _bare_except_findings(code: str) -> list[dict]:
+    """Detect CWE-703: bare except or broad Exception catch with silent body (pass/string)."""
+    try:
+        tree = ast.parse(code)
+    except SyntaxError:
+        return []
+
+    findings: list[dict] = []
+    for node in ast.walk(tree):
+        if not isinstance(node, ast.ExceptHandler):
+            continue
+        # Bare except: or except Exception:
+        is_bare = node.type is None
+        is_broad = (isinstance(node.type, ast.Name) and node.type.id == "Exception")
+        if not (is_bare or is_broad):
+            continue
+        # Body is only pass or a string literal (docstring-style comment)
+        body = node.body
+        if len(body) == 1:
+            stmt = body[0]
+            if isinstance(stmt, ast.Pass):
+                silent = True
+            elif isinstance(stmt, ast.Expr) and isinstance(stmt.value, ast.Constant):
+                silent = True
+            else:
+                silent = False
+        else:
+            silent = False
+        if silent:
+            label = "bare except" if is_bare else "except Exception"
+            findings.append({
+                "tool":       "heuristic",
+                "line":       node.lineno,
+                "severity":   "WARNING",
+                "code":       "H013",
+                "message":    (
+                    f"{label}: pass silently swallows all exceptions — errors are hidden "
+                    "and security-relevant failures may go undetected (CWE-703)."
+                ),
+                "cwe_ids":    ["CWE-703"],
+                "confidence": "HIGH",
+            })
+    return findings
+
+
+def _toctou_findings(code: str) -> list[dict]:
+    """Detect CWE-367/414: os.path.exists/access check followed by open() in same function."""
+    try:
+        tree = ast.parse(code)
+    except SyntaxError:
+        return []
+
+    _CHECK_FUNCS = {"exists", "isfile", "isdir", "access"}
+    findings: list[dict] = []
+
+    for func_node in ast.walk(tree):
+        if not isinstance(func_node, (ast.FunctionDef, ast.AsyncFunctionDef)):
+            continue
+
+        # Collect (line, path_var_name) for each existence check
+        checks: list[tuple[int, str | None]] = []
+        for node in ast.walk(func_node):
+            if not isinstance(node, ast.Call):
+                continue
+            name = _get_call_name(node.func)
+            if name not in _CHECK_FUNCS:
+                continue
+            # Must be called as os.path.exists / os.access / pathlib-style attribute
+            if not isinstance(node.func, ast.Attribute):
+                continue
+            path_var = None
+            if node.args:
+                arg = node.args[0]
+                if isinstance(arg, ast.Name):
+                    path_var = arg.id
+            checks.append((node.lineno, path_var))
+
+        if not checks:
+            continue
+
+        # Collect open() calls and their path arg
+        for node in ast.walk(func_node):
+            if not isinstance(node, ast.Call):
+                continue
+            name = _get_call_name(node.func)
+            if name != "open":
+                continue
+            if not node.args:
+                continue
+            open_arg = node.args[0]
+            open_var = open_arg.id if isinstance(open_arg, ast.Name) else None
+
+            for check_line, check_var in checks:
+                if node.lineno <= check_line:
+                    continue  # open must come after check
+                if check_var is None or open_var is None or check_var == open_var:
+                    findings.append({
+                        "tool":       "heuristic",
+                        "line":       node.lineno,
+                        "severity":   "WARNING",
+                        "code":       "H014",
+                        "message":    (
+                            "TOCTOU race condition: file existence checked then opened without "
+                            "atomic operation — another process may modify the file between "
+                            "check and use (CWE-367/CWE-414)."
+                        ),
+                        "cwe_ids":    ["CWE-367", "CWE-414"],
+                        "confidence": "MEDIUM",
+                    })
+                    break  # one finding per open() site
+            else:
+                continue
+            break  # stop after first match in this function
+
+    return findings
+
+
+_OBSOLETE_FUNCTIONS: dict[str, str] = {
+    "cgi.escape":           "html.escape",
+    "os.popen":             "subprocess.run",
+    "commands.getoutput":   "subprocess.run",
+    "commands.getstatusoutput": "subprocess.run",
+    "distutils.spawn.find_executable": "shutil.which",
+}
+
+
+def _obsolete_function_findings(code: str) -> list[dict]:
+    """Detect CWE-477: use of deprecated/obsolete library functions."""
+    try:
+        tree = ast.parse(code)
+    except SyntaxError:
+        return []
+
+    # Build module alias map: import cgi as c → "c" → "cgi"
+    aliases: dict[str, str] = {}
+    for node in ast.walk(tree):
+        if isinstance(node, ast.Import):
+            for alias in node.names:
+                name = alias.asname or alias.name
+                aliases[name] = alias.name
+        elif isinstance(node, ast.ImportFrom) and node.module:
+            for alias in node.names:
+                local = alias.asname or alias.name
+                aliases[local] = f"{node.module}.{alias.name}"
+
+    findings: list[dict] = []
+    for node in ast.walk(tree):
+        if not isinstance(node, ast.Call):
+            continue
+        # Reconstruct dotted call name handling obj.method style
+        if isinstance(node.func, ast.Attribute) and isinstance(node.func.value, ast.Name):
+            module_local = node.func.value.id
+            module_real  = aliases.get(module_local, module_local)
+            full_name    = f"{module_real}.{node.func.attr}"
+        elif isinstance(node.func, ast.Name):
+            full_name = aliases.get(node.func.id, node.func.id)
+        else:
+            continue
+
+        if full_name in _OBSOLETE_FUNCTIONS:
+            replacement = _OBSOLETE_FUNCTIONS[full_name]
+            findings.append({
+                "tool":       "heuristic",
+                "line":       node.lineno,
+                "severity":   "WARNING",
+                "code":       "H015",
+                "message":    (
+                    f"Obsolete function '{full_name}' is deprecated and may have "
+                    f"security implications — prefer '{replacement}' instead (CWE-477)."
+                ),
+                "cwe_ids":    ["CWE-477"],
+                "confidence": "HIGH",
+            })
+    return findings
+
+
+# ---------------------------------------------------------------------------
 # Public API
 # ---------------------------------------------------------------------------
 
@@ -790,6 +1057,11 @@ def run_static_analysis(code: str) -> list[dict]:
         + _object_ref_comparison_findings(code)
         + _redos_findings(code)
         + _sensitive_data_log_findings(code)
+        + _hardcoded_key_findings(code)
+        + _static_iv_findings(code)
+        + _bare_except_findings(code)
+        + _toctou_findings(code)
+        + _obsolete_function_findings(code)
     )
     all_findings = bandit_findings + pylint_findings + heuristic_findings
     all_findings.sort(key=lambda f: f["line"])
