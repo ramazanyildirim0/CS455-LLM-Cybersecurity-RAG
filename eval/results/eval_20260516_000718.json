@@ -1,0 +1,3794 @@
+{
+  "config": {
+    "model": "qwen2.5",
+    "n_security": 121,
+    "n_clean": 50,
+    "date": "20260516_000718",
+    "baselines": {
+      "b1": false,
+      "b2": false,
+      "no_bandit": false
+    },
+    "judge": false
+  },
+  "recall": {
+    "system": {
+      "recall_any": 0.71900826446281,
+      "recall_cwe": 0.6776859504132231,
+      "n": 121
+    },
+    "b1": null,
+    "b2": null,
+    "no_bandit": null
+  },
+  "fpr": {
+    "system": {
+      "fpr": 0.0,
+      "n": 50
+    },
+    "b1": null,
+    "b2": null,
+    "no_bandit": null
+  },
+  "citation_faithfulness": {
+    "system": {
+      "faithfulness": 0.0,
+      "n_findings": 0
+    }
+  },
+  "per_cwe": {
+    "CWE-113": {
+      "recall_any": 0.5,
+      "recall_cwe": 0.5,
+      "n": 2
+    },
+    "CWE-116": {
+      "recall_any": 0.5,
+      "recall_cwe": 0.5,
+      "n": 2
+    },
+    "CWE-117": {
+      "recall_any": 0.6666666666666666,
+      "recall_cwe": 0.6666666666666666,
+      "n": 3
+    },
+    "CWE-1204": {
+      "recall_any": 1.0,
+      "recall_cwe": 1.0,
+      "n": 1
+    },
+    "CWE-193": {
+      "recall_any": 0.0,
+      "recall_cwe": 0.0,
+      "n": 1
+    },
+    "CWE-20": {
+      "recall_any": 1.0,
+      "recall_cwe": 1.0,
+      "n": 6
+    },
+    "CWE-200": {
+      "recall_any": 1.0,
+      "recall_cwe": 1.0,
+      "n": 1
+    },
+    "CWE-209": {
+      "recall_any": 1.0,
+      "recall_cwe": 1.0,
+      "n": 1
+    },
+    "CWE-215": {
+      "recall_any": 1.0,
+      "recall_cwe": 1.0,
+      "n": 1
+    },
+    "CWE-22": {
+      "recall_any": 1.0,
+      "recall_cwe": 1.0,
+      "n": 4
+    },
+    "CWE-250": {
+      "recall_any": 0.0,
+      "recall_cwe": 0.0,
+      "n": 1
+    },
+    "CWE-252": {
+      "recall_any": 1.0,
+      "recall_cwe": 1.0,
+      "n": 1
+    },
+    "CWE-259": {
+      "recall_any": 1.0,
+      "recall_cwe": 1.0,
+      "n": 2
+    },
+    "CWE-269": {
+      "recall_any": 0.0,
+      "recall_cwe": 0.0,
+      "n": 1
+    },
+    "CWE-283": {
+      "recall_any": 0.0,
+      "recall_cwe": 0.0,
+      "n": 1
+    },
+    "CWE-285": {
+      "recall_any": 0.0,
+      "recall_cwe": 0.0,
+      "n": 1
+    },
+    "CWE-295": {
+      "recall_any": 0.6666666666666666,
+      "recall_cwe": 0.6666666666666666,
+      "n": 3
+    },
+    "CWE-306": {
+      "recall_any": 0.0,
+      "recall_cwe": 0.0,
+      "n": 1
+    },
+    "CWE-319": {
+      "recall_any": 0.5,
+      "recall_cwe": 0.5,
+      "n": 2
+    },
+    "CWE-321": {
+      "recall_any": 0.0,
+      "recall_cwe": 0.0,
+      "n": 2
+    },
+    "CWE-326": {
+      "recall_any": 1.0,
+      "recall_cwe": 1.0,
+      "n": 2
+    },
+    "CWE-327": {
+      "recall_any": 0.75,
+      "recall_cwe": 0.5,
+      "n": 4
+    },
+    "CWE-329": {
+      "recall_any": 0.0,
+      "recall_cwe": 0.0,
+      "n": 1
+    },
+    "CWE-330": {
+      "recall_any": 1.0,
+      "recall_cwe": 1.0,
+      "n": 1
+    },
+    "CWE-331": {
+      "recall_any": 1.0,
+      "recall_cwe": 1.0,
+      "n": 1
+    },
+    "CWE-339": {
+      "recall_any": 1.0,
+      "recall_cwe": 1.0,
+      "n": 1
+    },
+    "CWE-347": {
+      "recall_any": 0.6666666666666666,
+      "recall_cwe": 0.6666666666666666,
+      "n": 3
+    },
+    "CWE-367": {
+      "recall_any": 1.0,
+      "recall_cwe": 1.0,
+      "n": 1
+    },
+    "CWE-377": {
+      "recall_any": 1.0,
+      "recall_cwe": 1.0,
+      "n": 1
+    },
+    "CWE-379": {
+      "recall_any": 1.0,
+      "recall_cwe": 1.0,
+      "n": 1
+    },
+    "CWE-385": {
+      "recall_any": 0.0,
+      "recall_cwe": 0.0,
+      "n": 1
+    },
+    "CWE-400": {
+      "recall_any": 1.0,
+      "recall_cwe": 1.0,
+      "n": 1
+    },
+    "CWE-406": {
+      "recall_any": 0.0,
+      "recall_cwe": 0.0,
+      "n": 1
+    },
+    "CWE-414": {
+      "recall_any": 0.0,
+      "recall_cwe": 0.0,
+      "n": 1
+    },
+    "CWE-425": {
+      "recall_any": 1.0,
+      "recall_cwe": 1.0,
+      "n": 1
+    },
+    "CWE-434": {
+      "recall_any": 1.0,
+      "recall_cwe": 1.0,
+      "n": 2
+    },
+    "CWE-454": {
+      "recall_any": 1.0,
+      "recall_cwe": 1.0,
+      "n": 1
+    },
+    "CWE-462": {
+      "recall_any": 1.0,
+      "recall_cwe": 0.0,
+      "n": 1
+    },
+    "CWE-477": {
+      "recall_any": 0.0,
+      "recall_cwe": 0.0,
+      "n": 1
+    },
+    "CWE-502": {
+      "recall_any": 0.5,
+      "recall_cwe": 0.5,
+      "n": 4
+    },
+    "CWE-521": {
+      "recall_any": 0.5,
+      "recall_cwe": 0.5,
+      "n": 2
+    },
+    "CWE-522": {
+      "recall_any": 1.0,
+      "recall_cwe": 0.5,
+      "n": 2
+    },
+    "CWE-595": {
+      "recall_any": 0.0,
+      "recall_cwe": 1.0,
+      "n": 1
+    },
+    "CWE-601": {
+      "recall_any": 0.8,
+      "recall_cwe": 0.6,
+      "n": 5
+    },
+    "CWE-605": {
+      "recall_any": 1.0,
+      "recall_cwe": 1.0,
+      "n": 1
+    },
+    "CWE-611": {
+      "recall_any": 1.0,
+      "recall_cwe": 1.0,
+      "n": 6
+    },
+    "CWE-641": {
+      "recall_any": 0.0,
+      "recall_cwe": 0.0,
+      "n": 1
+    },
+    "CWE-643": {
+      "recall_any": 1.0,
+      "recall_cwe": 1.0,
+      "n": 2
+    },
+    "CWE-703": {
+      "recall_any": 0.0,
+      "recall_cwe": 0.0,
+      "n": 3
+    },
+    "CWE-730": {
+      "recall_any": 0.6666666666666666,
+      "recall_cwe": 0.6666666666666666,
+      "n": 3
+    },
+    "CWE-732": {
+      "recall_any": 1.0,
+      "recall_cwe": 1.0,
+      "n": 1
+    },
+    "CWE-759": {
+      "recall_any": 1.0,
+      "recall_cwe": 1.0,
+      "n": 1
+    },
+    "CWE-760": {
+      "recall_any": 0.0,
+      "recall_cwe": 0.0,
+      "n": 1
+    },
+    "CWE-776": {
+      "recall_any": 1.0,
+      "recall_cwe": 1.0,
+      "n": 1
+    },
+    "CWE-78": {
+      "recall_any": 1.0,
+      "recall_cwe": 1.0,
+      "n": 2
+    },
+    "CWE-79": {
+      "recall_any": 1.0,
+      "recall_cwe": 1.0,
+      "n": 3
+    },
+    "CWE-798": {
+      "recall_any": 1.0,
+      "recall_cwe": 1.0,
+      "n": 2
+    },
+    "CWE-80": {
+      "recall_any": 1.0,
+      "recall_cwe": 1.0,
+      "n": 1
+    },
+    "CWE-827": {
+      "recall_any": 1.0,
+      "recall_cwe": 1.0,
+      "n": 1
+    },
+    "CWE-835": {
+      "recall_any": 0.0,
+      "recall_cwe": 0.0,
+      "n": 1
+    },
+    "CWE-841": {
+      "recall_any": 0.0,
+      "recall_cwe": 0.0,
+      "n": 1
+    },
+    "CWE-89": {
+      "recall_any": 1.0,
+      "recall_cwe": 1.0,
+      "n": 2
+    },
+    "CWE-90": {
+      "recall_any": 1.0,
+      "recall_cwe": 1.0,
+      "n": 2
+    },
+    "CWE-918": {
+      "recall_any": 1.0,
+      "recall_cwe": 1.0,
+      "n": 2
+    },
+    "CWE-94": {
+      "recall_any": 1.0,
+      "recall_cwe": 0.6666666666666666,
+      "n": 3
+    },
+    "CWE-941": {
+      "recall_any": 0.0,
+      "recall_cwe": 0.0,
+      "n": 1
+    },
+    "CWE-943": {
+      "recall_any": 1.0,
+      "recall_cwe": 1.0,
+      "n": 1
+    },
+    "CWE-95": {
+      "recall_any": 1.0,
+      "recall_cwe": 1.0,
+      "n": 1
+    },
+    "CWE-99": {
+      "recall_any": 1.0,
+      "recall_cwe": 0.0,
+      "n": 1
+    }
+  },
+  "raw_recall": [
+    {
+      "task_id": "CWE-020_author_1.py",
+      "phase": "recall",
+      "cwe": "CWE-20",
+      "system": {
+        "findings": [
+          {
+            "line": 10,
+            "severity": "WARNING",
+            "explanation": "Use of unsafe yaml load. Allows instantiation of arbitrary objects. Consider yaml.safe_load().",
+            "fix_suggestion": "Replace yaml.load() with yaml.safe_load() or yaml.load(..., Loader=yaml.SafeLoader).",
+            "citation": "CWE-20"
+          }
+        ],
+        "detected_any": true,
+        "detected_cwe": true,
+        "elapsed_s": 19.22
+      },
+      "b1": null,
+      "b2": null,
+      "no_bandit": null
+    },
+    {
+      "task_id": "CWE-020_author_2.py",
+      "phase": "recall",
+      "cwe": "CWE-20",
+      "system": {
+        "findings": [
+          {
+            "line": 8,
+            "severity": "CRITICAL",
+            "explanation": "Using xml.etree.ElementTree.fromstring to parse untrusted XML data is vulnerable to XML attacks.",
+            "fix_suggestion": "Use defusedxml.ElementTree.fromstring or call defusedxml.defuse_stdlib()",
+            "citation": "CWE-20"
+          }
+        ],
+        "detected_any": true,
+        "detected_cwe": true,
+        "elapsed_s": 8.9
+      },
+      "b1": null,
+      "b2": null,
+      "no_bandit": null
+    },
+    {
+      "task_id": "CWE-020_codeql_1.py",
+      "phase": "recall",
+      "cwe": "CWE-20",
+      "system": {
+        "findings": [
+          {
+            "line": 10,
+            "severity": "WARNING",
+            "explanation": "Unvalidated request input flows into make_response() without sanitization or type checking \u2014 potential injection or data exposure.",
+            "fix_suggestion": "Sanitize and validate the 'username' before using it in the response.",
+            "citation": "CWE-20"
+          }
+        ],
+        "detected_any": true,
+        "detected_cwe": true,
+        "elapsed_s": 8.04
+      },
+      "b1": null,
+      "b2": null,
+      "no_bandit": null
+    },
+    {
+      "task_id": "CWE-020_codeql_2.py",
+      "phase": "recall",
+      "cwe": "CWE-20",
+      "system": {
+        "findings": [
+          {
+            "line": 15,
+            "severity": "CRITICAL",
+            "explanation": "Deserializing untrusted data with pickle can lead to arbitrary code execution.",
+            "fix_suggestion": "Use a safer serialization method like json or consider using secure deserialization libraries.",
+            "citation": "CWE-502"
+          }
+        ],
+        "detected_any": true,
+        "detected_cwe": true,
+        "elapsed_s": 8.36
+      },
+      "b1": null,
+      "b2": null,
+      "no_bandit": null
+    },
+    {
+      "task_id": "CWE-020_codeql_3.py",
+      "phase": "recall",
+      "cwe": "CWE-20",
+      "system": {
+        "findings": [
+          {
+            "line": 17,
+            "severity": "CRITICAL",
+            "explanation": "Unvalidated request input flows into redirect() without sanitization or type checking \u2014 potential injection.",
+            "fix_suggestion": "Validate and sanitize the target URL before using it in a redirect()",
+            "citation": "CWE-20"
+          },
+          {
+            "line": 17,
+            "severity": "CRITICAL",
+            "explanation": "Unvalidated request input flows into return() without sanitization or type checking \u2014 potential injection.",
+            "fix_suggestion": "Validate and sanitize the target URL before returning it in a response",
+            "citation": "CWE-20"
+          }
+        ],
+        "detected_any": true,
+        "detected_cwe": true,
+        "elapsed_s": 12.01
+      },
+      "b1": null,
+      "b2": null,
+      "no_bandit": null
+    },
+    {
+      "task_id": "CWE-020_codeql_4.py",
+      "phase": "recall",
+      "cwe": "CWE-20",
+      "system": {
+        "findings": [
+          {
+            "line": 13,
+            "severity": "WARNING",
+            "explanation": "Unvalidated request input flows into redirect() without sanitization or type checking \u2014 potential injection.",
+            "fix_suggestion": "Validate and sanitize the target URL before using it in a redirect()",
+            "citation": "CWE-20"
+          },
+          {
+            "line": 13,
+            "severity": "WARNING",
+            "explanation": "Unvalidated request input flows into return() without sanitization or type checking \u2014 potential injection.",
+            "fix_suggestion": "Validate and sanitize the target URL before returning it in a response",
+            "citation": "CWE-20"
+          }
+        ],
+        "detected_any": true,
+        "detected_cwe": true,
+        "elapsed_s": 11.89
+      },
+      "b1": null,
+      "b2": null,
+      "no_bandit": null
+    },
+    {
+      "task_id": "CWE-022_author_1.py",
+      "phase": "recall",
+      "cwe": "CWE-22",
+      "system": {
+        "findings": [
+          {
+            "line": 13,
+            "severity": "CRITICAL",
+            "explanation": "os.remove(fileName) uses user input directly without validation or sanitization.",
+            "fix_suggestion": "Validate and sanitize the file name before using it in os.remove()",
+            "citation": "CWE-22"
+          },
+          {
+            "line": 8,
+            "severity": "WARNING",
+            "explanation": "The function does not validate the request data for 'fileName' parameter.",
+            "fix_suggestion": "Add validation to ensure 'fileName' is a valid file path and exists before deletion.",
+            "citation": "CWE-673"
+          }
+        ],
+        "detected_any": true,
+        "detected_cwe": true,
+        "elapsed_s": 11.1
+      },
+      "b1": null,
+      "b2": null,
+      "no_bandit": null
+    },
+    {
+      "task_id": "CWE-022_author_2.py",
+      "phase": "recall",
+      "cwe": "CWE-22",
+      "system": {
+        "findings": [
+          {
+            "line": 8,
+            "severity": "WARNING",
+            "explanation": "The function uses external input to construct a pathname without validation or sanitization.",
+            "fix_suggestion": "Validate and sanitize the URL parameter before using it in request.urlopen()",
+            "citation": "CWE-22"
+          },
+          {
+            "line": 8,
+            "severity": "CRITICAL",
+            "explanation": "The use of urllib.request.urlopen with user input is potentially vulnerable to injection attacks.",
+            "fix_suggestion": "Use a safer HTTP client like requests.get and validate the URL parameter.",
+            "citation": "B310"
+          }
+        ],
+        "detected_any": true,
+        "detected_cwe": true,
+        "elapsed_s": 11.65
+      },
+      "b1": null,
+      "b2": null,
+      "no_bandit": null
+    },
+    {
+      "task_id": "CWE-022_codeql_1.py",
+      "phase": "recall",
+      "cwe": "CWE-22",
+      "system": {
+        "findings": [
+          {
+            "line": 12,
+            "severity": "CRITICAL",
+            "explanation": "Unvalidated request input flows into open() without sanitization or type checking \u2014 potential injection.",
+            "fix_suggestion": "Sanitize and validate the filename before opening the file.",
+            "citation": "CWE-20"
+          }
+        ],
+        "detected_any": true,
+        "detected_cwe": true,
+        "elapsed_s": 8.22
+      },
+      "b1": null,
+      "b2": null,
+      "no_bandit": null
+    },
+    {
+      "task_id": "CWE-022_codeql_2.py",
+      "phase": "recall",
+      "cwe": "CWE-22",
+      "system": {
+        "findings": [
+          {
+            "line": 11,
+            "severity": "WARNING",
+            "explanation": "Probable insecure usage of temp file/directory.",
+            "fix_suggestion": "Review and remediate according to the referenced CWE guidance.",
+            "citation": "CWE-377"
+          }
+        ],
+        "detected_any": true,
+        "detected_cwe": true,
+        "elapsed_s": 4.55
+      },
+      "b1": null,
+      "b2": null,
+      "no_bandit": null
+    },
+    {
+      "task_id": "CWE-078_author_1.py",
+      "phase": "recall",
+      "cwe": "CWE-78",
+      "system": {
+        "findings": [
+          {
+            "line": 8,
+            "severity": "CRITICAL",
+            "explanation": "User input is directly used in a subprocess call with shell=True, allowing command injection.",
+            "fix_suggestion": "Use shlex.split() to safely split the user input and avoid shell=True.",
+            "citation": "CWE-78"
+          }
+        ],
+        "detected_any": true,
+        "detected_cwe": true,
+        "elapsed_s": 8.01
+      },
+      "b1": null,
+      "b2": null,
+      "no_bandit": null
+    },
+    {
+      "task_id": "CWE-078_codeql_1.py",
+      "phase": "recall",
+      "cwe": "CWE-78",
+      "system": {
+        "findings": [
+          {
+            "line": 13,
+            "severity": "CRITICAL",
+            "explanation": "Executing a command with user input directly leads to OS Command Injection.",
+            "fix_suggestion": "Use subprocess.run() with shell=False and shlex.split() to safely execute commands.",
+            "citation": "CWE-78"
+          },
+          {
+            "line": 13,
+            "severity": "WARNING",
+            "explanation": "Using os.system with a user-controlled argument can lead to command injection vulnerabilities.",
+            "fix_suggestion": "Replace os.system with subprocess.run and use shlex.split for safe execution.",
+            "citation": "CWE-78"
+          }
+        ],
+        "detected_any": true,
+        "detected_cwe": true,
+        "elapsed_s": 12.45
+      },
+      "b1": null,
+      "b2": null,
+      "no_bandit": null
+    },
+    {
+      "task_id": "CWE-079_codeql_1.py",
+      "phase": "recall",
+      "cwe": "CWE-79",
+      "system": {
+        "findings": [
+          {
+            "line": 13,
+            "severity": "WARNING",
+            "explanation": "Unvalidated request input ('name') flows into template rendering without sanitization or type checking \u2014 potential injection or data exposure.",
+            "fix_suggestion": "Use autoescape=True in the Environment or use select_autoescape to mitigate XSS vulnerabilities.",
+            "citation": "CWE-20"
+          },
+          {
+            "line": 15,
+            "severity": "INFO",
+            "explanation": "User input ('name') is rendered directly into the response without validation or escaping.",
+            "fix_suggestion": "Sanitize and escape user input before rendering it in templates.",
+            "citation": "CWE-94"
+          }
+        ],
+        "detected_any": true,
+        "detected_cwe": true,
+        "elapsed_s": 13.84
+      },
+      "b1": null,
+      "b2": null,
+      "no_bandit": null
+    },
+    {
+      "task_id": "CWE-079_codeql_2.py",
+      "phase": "recall",
+      "cwe": "CWE-79",
+      "system": {
+        "findings": [
+          {
+            "line": 12,
+            "severity": "CRITICAL",
+            "explanation": "User input is directly used in the response without sanitization or validation, leading to potential cross-site scripting (XSS).",
+            "fix_suggestion": "Sanitize and escape user input before including it in the response.",
+            "citation": "CWE-79"
+          },
+          {
+            "line": 12,
+            "severity": "WARNING",
+            "explanation": "Unvalidated request input flows into make_response() without sanitization or type checking, which could lead to data exposure or injection vulnerabilities.",
+            "fix_suggestion": "Sanitize and validate user input before using it in the response.",
+            "citation": "CWE-20"
+          }
+        ],
+        "detected_any": true,
+        "detected_cwe": true,
+        "elapsed_s": 14.06
+      },
+      "b1": null,
+      "b2": null,
+      "no_bandit": null
+    },
+    {
+      "task_id": "CWE-079_sonar_1.py",
+      "phase": "recall",
+      "cwe": "CWE-79",
+      "system": {
+        "findings": [
+          {
+            "line": 7,
+            "severity": "INFO",
+            "explanation": "The docstring does not clearly indicate that the 'name' parameter is sanitized.",
+            "fix_suggestion": "Add a comment or docstring explaining how the input is sanitized.",
+            "citation": ""
+          },
+          {
+            "line": 13,
+            "severity": "CRITICAL",
+            "explanation": "User input is directly used in an HTML response without sanitization.",
+            "fix_suggestion": "Sanitize or escape the user input before using it in the HTML response.",
+            "citation": "CWE-20"
+          }
+        ],
+        "detected_any": true,
+        "detected_cwe": true,
+        "elapsed_s": 12.18
+      },
+      "b1": null,
+      "b2": null,
+      "no_bandit": null
+    },
+    {
+      "task_id": "CWE-080_author_1.py",
+      "phase": "recall",
+      "cwe": "CWE-80",
+      "system": {
+        "findings": [
+          {
+            "line": 12,
+            "severity": "CRITICAL",
+            "explanation": "User input is directly used in an HTML response without sanitization, leading to potential Cross-Site Scripting (XSS).",
+            "fix_suggestion": "Use escape() or Markup() from flask to sanitize the input.",
+            "citation": "CWE-79"
+          },
+          {
+            "line": 12,
+            "severity": "WARNING",
+            "explanation": "Unvalidated request input flows into make_response() without sanitization or type checking \u2014 potential injection or data exposure.",
+            "fix_suggestion": "Sanitize or validate user input before using it in the response.",
+            "citation": "CWE-20"
+          }
+        ],
+        "detected_any": true,
+        "detected_cwe": true,
+        "elapsed_s": 13.54
+      },
+      "b1": null,
+      "b2": null,
+      "no_bandit": null
+    },
+    {
+      "task_id": "CWE-089_author_1.py",
+      "phase": "recall",
+      "cwe": "CWE-89",
+      "system": {
+        "findings": [
+          {
+            "line": 8,
+            "severity": "CRITICAL",
+            "explanation": "Possible hardcoded password: '' (CWE-259)",
+            "fix_suggestion": "Do not use hard-coded passwords. Use environment variables or a secure vault.",
+            "citation": "CWE-798"
+          },
+          {
+            "line": 16,
+            "severity": "CRITICAL",
+            "explanation": "Possible SQL injection vector through string-based query construction (CWE-89)",
+            "fix_suggestion": "Use parameterized queries to prevent SQL injection.",
+            "citation": "CWE-89"
+          }
+        ],
+        "detected_any": true,
+        "detected_cwe": true,
+        "elapsed_s": 13.95
+      },
+      "b1": null,
+      "b2": null,
+      "no_bandit": null
+    },
+    {
+      "task_id": "CWE-089_codeql_1.py",
+      "phase": "recall",
+      "cwe": "CWE-89",
+      "system": {
+        "findings": [
+          {
+            "line": 7,
+            "severity": "INFO",
+            "explanation": "Hardcoded password is used as a default argument.",
+            "fix_suggestion": "Remove the hardcoded password or use a secure method to retrieve it.",
+            "citation": "CWE-798"
+          },
+          {
+            "line": 16,
+            "severity": "CRITICAL",
+            "explanation": "Possible SQL injection vector through string-based query construction.",
+            "fix_suggestion": "Use parameterized queries instead of string formatting for SQL commands.",
+            "citation": "CWE-89"
+          }
+        ],
+        "detected_any": true,
+        "detected_cwe": true,
+        "elapsed_s": 14.61
+      },
+      "b1": null,
+      "b2": null,
+      "no_bandit": null
+    },
+    {
+      "task_id": "CWE-090_codeql_1.py",
+      "phase": "recall",
+      "cwe": "CWE-90",
+      "system": {
+        "findings": [
+          {
+            "line": 17,
+            "severity": "CRITICAL",
+            "explanation": "LDAP query with user input is vulnerable to injection attacks.",
+            "fix_suggestion": "Use parameterized queries or escape the input properly.",
+            "citation": "CWE-89"
+          },
+          {
+            "line": 23,
+            "severity": "WARNING",
+            "explanation": "Returning raw LDAP search results could expose sensitive information.",
+            "fix_suggestion": "Filter and sanitize the response before returning it.",
+            "citation": "CWE-79"
+          }
+        ],
+        "detected_any": true,
+        "detected_cwe": true,
+        "elapsed_s": 13.63
+      },
+      "b1": null,
+      "b2": null,
+      "no_bandit": null
+    },
+    {
+      "task_id": "CWE-090_codeql_2.py",
+      "phase": "recall",
+      "cwe": "CWE-90",
+      "system": {
+        "findings": [
+          {
+            "line": 17,
+            "severity": "CRITICAL",
+            "explanation": "LDAP query with user input is vulnerable to injection attacks.",
+            "fix_suggestion": "Use parameterized queries or escape the input properly.",
+            "citation": "CWE-89"
+          },
+          {
+            "line": 20,
+            "severity": "WARNING",
+            "explanation": "Using `auto_bind=True` without proper validation can lead to privilege escalation.",
+            "fix_suggestion": "Validate and sanitize user inputs before binding.",
+            "citation": "CWE-250"
+          },
+          {
+            "line": 14,
+            "severity": "INFO",
+            "explanation": "The function name 'normal' is not descriptive and could be misleading.",
+            "fix_suggestion": "Rename the function to something more meaningful.",
+            "citation": ""
+          }
+        ],
+        "detected_any": true,
+        "detected_cwe": true,
+        "elapsed_s": 18.68
+      },
+      "b1": null,
+      "b2": null,
+      "no_bandit": null
+    },
+    {
+      "task_id": "CWE-094_author_1.py",
+      "phase": "recall",
+      "cwe": "CWE-94",
+      "system": {
+        "findings": [
+          {
+            "line": 10,
+            "severity": "CRITICAL",
+            "explanation": "User input is directly used in a compiled and executed Python code.",
+            "fix_suggestion": "Sanitize or validate user input before compiling and executing it.",
+            "citation": "CWE-94"
+          },
+          {
+            "line": 7,
+            "severity": "WARNING",
+            "explanation": "The function `compile` can be dangerous if the source is not sanitized.",
+            "fix_suggestion": "Use safe methods to sanitize or validate user input before compiling.",
+            "citation": "CWE-94"
+          },
+          {
+            "line": 10,
+            "severity": "INFO",
+            "explanation": "User input is reflected in the response without sanitization.",
+            "fix_suggestion": "Sanitize or escape user input before including it in the response.",
+            "citation": "CWE-79"
+          }
+        ],
+        "detected_any": true,
+        "detected_cwe": true,
+        "elapsed_s": 17.34
+      },
+      "b1": null,
+      "b2": null,
+      "no_bandit": null
+    },
+    {
+      "task_id": "CWE-094_codeql_1.py",
+      "phase": "recall",
+      "cwe": "CWE-94",
+      "system": {
+        "findings": [
+          {
+            "line": 6,
+            "severity": "WARNING",
+            "explanation": "The route handler does not check the request method before processing user input.",
+            "fix_suggestion": "Add a condition to verify the request method is POST.",
+            "citation": "CWE-20"
+          },
+          {
+            "line": 12,
+            "severity": "CRITICAL",
+            "explanation": "User input is used in an exec call without proper sanitization.",
+            "fix_suggestion": "Use ast.literal_eval() instead of exec()",
+            "citation": "CWE-95"
+          }
+        ],
+        "detected_any": true,
+        "detected_cwe": false,
+        "elapsed_s": 13.77
+      },
+      "b1": null,
+      "b2": null,
+      "no_bandit": null
+    },
+    {
+      "task_id": "CWE-094_sonar_1.py",
+      "phase": "recall",
+      "cwe": "CWE-94",
+      "system": {
+        "findings": [
+          {
+            "line": 7,
+            "severity": "WARNING",
+            "explanation": "Importing modules with user input can lead to security issues.",
+            "fix_suggestion": "Validate and sanitize the module name before importing.",
+            "citation": "CWE-94"
+          },
+          {
+            "line": 12,
+            "severity": "CRITICAL",
+            "explanation": "User input flows into exec(), allowing code injection.",
+            "fix_suggestion": "Use safer alternatives like eval() or avoid dynamic imports.",
+            "citation": "CWE-95"
+          }
+        ],
+        "detected_any": true,
+        "detected_cwe": true,
+        "elapsed_s": 12.25
+      },
+      "b1": null,
+      "b2": null,
+      "no_bandit": null
+    },
+    {
+      "task_id": "CWE-095_author_1.py",
+      "phase": "recall",
+      "cwe": "CWE-95",
+      "system": {
+        "findings": [
+          {
+            "line": 5,
+            "severity": "CRITICAL",
+            "explanation": "eval() is used to execute user input as code, leading to potential remote code execution.",
+            "fix_suggestion": "Use ast.literal_eval() instead of eval()",
+            "citation": "CWE-95"
+          },
+          {
+            "line": 5,
+            "severity": "WARNING",
+            "explanation": "The function uses eval() with user input, which is a security risk and should be avoided.",
+            "fix_suggestion": "Replace the use of eval() with safer alternatives like ast.literal_eval()",
+            "citation": "CWE-95"
+          }
+        ],
+        "detected_any": true,
+        "detected_cwe": true,
+        "elapsed_s": 13.08
+      },
+      "b1": null,
+      "b2": null,
+      "no_bandit": null
+    },
+    {
+      "task_id": "CWE-099_sonar_1.py",
+      "phase": "recall",
+      "cwe": "CWE-99",
+      "system": {
+        "findings": [
+          {
+            "line": 12,
+            "severity": "CRITICAL",
+            "explanation": "Unvalidated request input flows into send_file() without sanitization or type checking \u2014 potential file path traversal vulnerability.",
+            "fix_suggestion": "Use os.path.join('static', file) to sanitize the file path.",
+            "citation": "CWE-22"
+          },
+          {
+            "line": 12,
+            "severity": "CRITICAL",
+            "explanation": "Unvalidated request input flows into return() without sanitization or type checking \u2014 potential file path traversal vulnerability.",
+            "fix_suggestion": "Use os.path.join('static', file) to sanitize the file path.",
+            "citation": "CWE-22"
+          }
+        ],
+        "detected_any": true,
+        "detected_cwe": false,
+        "elapsed_s": 14.9
+      },
+      "b1": null,
+      "b2": null,
+      "no_bandit": null
+    },
+    {
+      "task_id": "CWE-113_sonar_1.py",
+      "phase": "recall",
+      "cwe": "CWE-113",
+      "system": {
+        "findings": [],
+        "detected_any": false,
+        "detected_cwe": false,
+        "elapsed_s": 14.46
+      },
+      "b1": null,
+      "b2": null,
+      "no_bandit": null
+    },
+    {
+      "task_id": "CWE-113_sonar_2.py",
+      "phase": "recall",
+      "cwe": "CWE-113",
+      "system": {
+        "findings": [
+          {
+            "line": 12,
+            "severity": "WARNING",
+            "explanation": "Flask response reflects unsanitized user input which could lead to a cross-site scripting (XSS) vulnerability.",
+            "fix_suggestion": "Sanitize or escape the content_type before setting it in the response headers.",
+            "citation": "CWE-79"
+          },
+          {
+            "line": 10,
+            "severity": "INFO",
+            "explanation": "The route function does not validate user input which could lead to potential injection vulnerabilities.",
+            "fix_suggestion": "Validate and sanitize all user inputs before processing them.",
+            "citation": "CWE-20"
+          }
+        ],
+        "detected_any": true,
+        "detected_cwe": true,
+        "elapsed_s": 14.27
+      },
+      "b1": null,
+      "b2": null,
+      "no_bandit": null
+    },
+    {
+      "task_id": "CWE-116_author_1.py",
+      "phase": "recall",
+      "cwe": "CWE-116",
+      "system": {
+        "findings": [
+          {
+            "line": 15,
+            "severity": "CRITICAL",
+            "explanation": "OS command injection vulnerability due to user input in os.system call.",
+            "fix_suggestion": "Use subprocess.run with shell=False and properly escaped arguments.",
+            "citation": "CWE-78"
+          },
+          {
+            "line": 16,
+            "severity": "WARNING",
+            "explanation": "Potential insecure usage of temporary file creation without proper sanitization or validation.",
+            "fix_suggestion": "Ensure the path is sanitized and validate the content before writing to a temporary file.",
+            "citation": "CWE-377"
+          }
+        ],
+        "detected_any": true,
+        "detected_cwe": false,
+        "elapsed_s": 15.77
+      },
+      "b1": null,
+      "b2": null,
+      "no_bandit": null
+    },
+    {
+      "task_id": "CWE-116_codeql_1.py",
+      "phase": "recall",
+      "cwe": "CWE-116",
+      "system": {
+        "findings": [
+          {
+            "line": 11,
+            "severity": "INFO",
+            "explanation": "Regex used to remove/filter HTML tags \u2014 this is insufficient sanitization and can be bypassed; use bleach or markupsafe instead.",
+            "fix_suggestion": "Use a library like bleach or markupsafe for proper HTML sanitization.",
+            "citation": "CWE-116"
+          }
+        ],
+        "detected_any": false,
+        "detected_cwe": true,
+        "elapsed_s": 12.04
+      },
+      "b1": null,
+      "b2": null,
+      "no_bandit": null
+    },
+    {
+      "task_id": "CWE-117_author_1.py",
+      "phase": "recall",
+      "cwe": "CWE-117",
+      "system": {
+        "findings": [
+          {
+            "line": 14,
+            "severity": "CRITICAL",
+            "explanation": "User-controlled input passed directly to logging call \u2014 log injection possible via embedded newlines (CWE-117).",
+            "fix_suggestion": "Sanitize or escape user input before logging.",
+            "citation": "CWE-117"
+          }
+        ],
+        "detected_any": true,
+        "detected_cwe": true,
+        "elapsed_s": 11.58
+      },
+      "b1": null,
+      "b2": null,
+      "no_bandit": null
+    },
+    {
+      "task_id": "CWE-117_codeql_1.py",
+      "phase": "recall",
+      "cwe": "CWE-117",
+      "system": {
+        "findings": [],
+        "detected_any": false,
+        "detected_cwe": false,
+        "elapsed_s": 16.09
+      },
+      "b1": null,
+      "b2": null,
+      "no_bandit": null
+    },
+    {
+      "task_id": "CWE-117_sonar_1.py",
+      "phase": "recall",
+      "cwe": "CWE-117",
+      "system": {
+        "findings": [
+          {
+            "line": 10,
+            "severity": "CRITICAL",
+            "explanation": "Logging user input directly without sanitization can lead to log injection.",
+            "fix_suggestion": "Sanitize or escape the input before logging it.",
+            "citation": "CWE-117"
+          },
+          {
+            "line": 9,
+            "severity": "WARNING",
+            "explanation": "Using request.args.get('input') without validation can expose the application to injection attacks.",
+            "fix_suggestion": "Validate and sanitize the 'input' parameter.",
+            "citation": "CWE-20"
+          }
+        ],
+        "detected_any": true,
+        "detected_cwe": true,
+        "elapsed_s": 13.48
+      },
+      "b1": null,
+      "b2": null,
+      "no_bandit": null
+    },
+    {
+      "task_id": "CWE-1204_sonar_1.py",
+      "phase": "recall",
+      "cwe": "CWE-1204",
+      "system": {
+        "findings": [
+          {
+            "line": 10,
+            "severity": "CRITICAL",
+            "explanation": "Using a static vector for AES encryption can lead to weak encryption and potential vulnerabilities.",
+            "fix_suggestion": "Generate a random IV for each encryption operation.",
+            "citation": "CWE-327"
+          },
+          {
+            "line": 11,
+            "severity": "WARNING",
+            "explanation": "The key used in AES encryption is not validated or checked for strength.",
+            "fix_suggestion": "Ensure the key is strong and generated securely.",
+            "citation": "CWE-327"
+          }
+        ],
+        "detected_any": true,
+        "detected_cwe": true,
+        "elapsed_s": 17.31
+      },
+      "b1": null,
+      "b2": null,
+      "no_bandit": null
+    },
+    {
+      "task_id": "CWE-193_author_1.py",
+      "phase": "recall",
+      "cwe": "CWE-193",
+      "system": {
+        "findings": [],
+        "detected_any": false,
+        "detected_cwe": false,
+        "elapsed_s": 6.79
+      },
+      "b1": null,
+      "b2": null,
+      "no_bandit": null
+    },
+    {
+      "task_id": "CWE-200_author_1.py",
+      "phase": "recall",
+      "cwe": "CWE-200",
+      "system": {
+        "findings": [
+          {
+            "line": 14,
+            "severity": "WARNING",
+            "explanation": "Possible SQL injection vector through string-based query construction.",
+            "fix_suggestion": "Use parameterized queries or an ORM instead of string formatting.",
+            "citation": "CWE-89"
+          },
+          {
+            "line": 18,
+            "severity": "WARNING",
+            "explanation": "Sensitive data (SQL query, credential, or secret) included in a logging call \u2014 may expose internals to log aggregators (CWE-200).",
+            "fix_suggestion": "Do not log sensitive data (SQL queries, credentials) \u2014 log a generic message or sanitized reference instead.",
+            "citation": "CWE-200"
+          }
+        ],
+        "detected_any": true,
+        "detected_cwe": true,
+        "elapsed_s": 8.88
+      },
+      "b1": null,
+      "b2": null,
+      "no_bandit": null
+    },
+    {
+      "task_id": "CWE-209_codeql_1.py",
+      "phase": "recall",
+      "cwe": "CWE-209",
+      "system": {
+        "findings": [
+          {
+            "line": 19,
+            "severity": "WARNING",
+            "explanation": "Exception details (traceback or str(e)) returned directly in response \u2014 exposes internal stack traces to attackers (CWE-209).",
+            "fix_suggestion": "Catch exceptions internally and return a generic error message; never expose traceback.format_exc() or str(e) to clients.",
+            "citation": "CWE-209"
+          }
+        ],
+        "detected_any": true,
+        "detected_cwe": true,
+        "elapsed_s": 10.77
+      },
+      "b1": null,
+      "b2": null,
+      "no_bandit": null
+    },
+    {
+      "task_id": "CWE-215_codeql_1.py",
+      "phase": "recall",
+      "cwe": "CWE-215",
+      "system": {
+        "findings": [
+          {
+            "line": 12,
+            "severity": "CRITICAL",
+            "explanation": "A Flask app appears to be run with debug=True, which exposes the Werkzeug debugger and allows the execution of arbitrary code.",
+            "fix_suggestion": "Set debug=False in production and use environment variables for configuration.",
+            "citation": "CWE-94"
+          }
+        ],
+        "detected_any": true,
+        "detected_cwe": true,
+        "elapsed_s": 10.37
+      },
+      "b1": null,
+      "b2": null,
+      "no_bandit": null
+    },
+    {
+      "task_id": "CWE-250_mitre_1.py",
+      "phase": "recall",
+      "cwe": "CWE-250",
+      "system": {
+        "findings": [],
+        "detected_any": false,
+        "detected_cwe": false,
+        "elapsed_s": 7.0
+      },
+      "b1": null,
+      "b2": null,
+      "no_bandit": null
+    },
+    {
+      "task_id": "CWE-252_author_1.py",
+      "phase": "recall",
+      "cwe": "CWE-252",
+      "system": {
+        "findings": [
+          {
+            "line": 4,
+            "severity": "WARNING",
+            "explanation": "Unvalidated request input ('request data') flows into return() without sanitization or type checking \u2014 potential injection or data exposure.",
+            "fix_suggestion": "Validate and sanitize all request input before passing it to sinks.",
+            "citation": "CWE-20"
+          },
+          {
+            "line": 10,
+            "severity": "WARNING",
+            "explanation": "Unvalidated request input ('request data') flows into return() without sanitization or type checking \u2014 potential injection or data exposure.",
+            "fix_suggestion": "Sanitize and validate the 'data' parameter before processing it.",
+            "citation": "CWE-20"
+          },
+          {
+            "line": 14,
+            "severity": "WARNING",
+            "explanation": "Unvalidated request input ('request data') flows into return() without sanitization or type checking \u2014 potential injection or data exposure.",
+            "fix_suggestion": "Sanitize and validate the 'data' parameter before processing it.",
+            "citation": "CWE-20"
+          }
+        ],
+        "detected_any": true,
+        "detected_cwe": true,
+        "elapsed_s": 16.18
+      },
+      "b1": null,
+      "b2": null,
+      "no_bandit": null
+    },
+    {
+      "task_id": "CWE-259_author_1.py",
+      "phase": "recall",
+      "cwe": "CWE-259",
+      "system": {
+        "findings": [
+          {
+            "line": 5,
+            "severity": "CRITICAL",
+            "explanation": "Hardcoded admin password comparison is directly exploitable.",
+            "fix_suggestion": "Use a secure password manager to store and retrieve passwords.",
+            "citation": "CWE-259"
+          },
+          {
+            "line": 5,
+            "severity": "WARNING",
+            "explanation": "Password comparison with a literal string can be bypassed by an attacker.",
+            "fix_suggestion": "Hash the password using a secure hashing algorithm before comparing.",
+            "citation": "CWE-798"
+          }
+        ],
+        "detected_any": true,
+        "detected_cwe": true,
+        "elapsed_s": 13.92
+      },
+      "b1": null,
+      "b2": null,
+      "no_bandit": null
+    },
+    {
+      "task_id": "CWE-259_author_2.py",
+      "phase": "recall",
+      "cwe": "CWE-259",
+      "system": {
+        "findings": [
+          {
+            "line": 8,
+            "severity": "CRITICAL",
+            "explanation": "Hardcoded password in database connection string.",
+            "fix_suggestion": "Use environment variables or a configuration file to store sensitive information.",
+            "citation": "CWE-798"
+          }
+        ],
+        "detected_any": true,
+        "detected_cwe": true,
+        "elapsed_s": 9.79
+      },
+      "b1": null,
+      "b2": null,
+      "no_bandit": null
+    },
+    {
+      "task_id": "CWE-269_mitre_1.py",
+      "phase": "recall",
+      "cwe": "CWE-269",
+      "system": {
+        "findings": [],
+        "detected_any": false,
+        "detected_cwe": false,
+        "elapsed_s": 7.86
+      },
+      "b1": null,
+      "b2": null,
+      "no_bandit": null
+    },
+    {
+      "task_id": "CWE-283_mitre_1.py",
+      "phase": "recall",
+      "cwe": "CWE-283",
+      "system": {
+        "findings": [],
+        "detected_any": false,
+        "detected_cwe": false,
+        "elapsed_s": 5.18
+      },
+      "b1": null,
+      "b2": null,
+      "no_bandit": null
+    },
+    {
+      "task_id": "CWE-285_codeql_1.py",
+      "phase": "recall",
+      "cwe": "CWE-285",
+      "system": {
+        "findings": [],
+        "detected_any": false,
+        "detected_cwe": false,
+        "elapsed_s": 7.43
+      },
+      "b1": null,
+      "b2": null,
+      "no_bandit": null
+    },
+    {
+      "task_id": "CWE-295_author_1.py",
+      "phase": "recall",
+      "cwe": "CWE-295",
+      "system": {
+        "findings": [
+          {
+            "line": 10,
+            "severity": "CRITICAL",
+            "explanation": "Disables SSL/TLS verification, making the connection vulnerable to man-in-the-middle attacks.",
+            "fix_suggestion": "Set check_hostname=True and verify_mode=ssl.CERT_REQUIRED to ensure secure connections.",
+            "citation": "CWE-295"
+          }
+        ],
+        "detected_any": true,
+        "detected_cwe": true,
+        "elapsed_s": 10.45
+      },
+      "b1": null,
+      "b2": null,
+      "no_bandit": null
+    },
+    {
+      "task_id": "CWE-295_author_2.py",
+      "phase": "recall",
+      "cwe": "CWE-295",
+      "system": {
+        "findings": [],
+        "detected_any": false,
+        "detected_cwe": false,
+        "elapsed_s": 5.79
+      },
+      "b1": null,
+      "b2": null,
+      "no_bandit": null
+    },
+    {
+      "task_id": "CWE-295_codeql_1.py",
+      "phase": "recall",
+      "cwe": "CWE-295",
+      "system": {
+        "findings": [
+          {
+            "line": 4,
+            "severity": "CRITICAL",
+            "explanation": "Disabling SSL certificate checks allows man-in-the-middle attacks.",
+            "fix_suggestion": "Enable SSL certificate verification by setting verify=True.",
+            "citation": "CWE-295"
+          },
+          {
+            "line": 4,
+            "severity": "WARNING",
+            "explanation": "Using requests without a timeout can lead to indefinite blocking.",
+            "fix_suggestion": "Set a reasonable timeout value for the request.",
+            "citation": "CWE-400"
+          }
+        ],
+        "detected_any": true,
+        "detected_cwe": true,
+        "elapsed_s": 12.7
+      },
+      "b1": null,
+      "b2": null,
+      "no_bandit": null
+    },
+    {
+      "task_id": "CWE-306_pearce_1.py",
+      "phase": "recall",
+      "cwe": "CWE-306",
+      "system": {
+        "findings": [],
+        "detected_any": false,
+        "detected_cwe": false,
+        "elapsed_s": 122.91
+      },
+      "b1": null,
+      "b2": null,
+      "no_bandit": null
+    },
+    {
+      "task_id": "CWE-319_author_1.py",
+      "phase": "recall",
+      "cwe": "CWE-319",
+      "system": {
+        "findings": [],
+        "detected_any": false,
+        "detected_cwe": false,
+        "elapsed_s": 7.87
+      },
+      "b1": null,
+      "b2": null,
+      "no_bandit": null
+    },
+    {
+      "task_id": "CWE-319_author_2.py",
+      "phase": "recall",
+      "cwe": "CWE-319",
+      "system": {
+        "findings": [
+          {
+            "line": 5,
+            "severity": "INFO",
+            "explanation": "The function does not validate the input parameters before use.",
+            "fix_suggestion": "Add validation checks for hostname, username, password, and sensitive_file.",
+            "citation": ""
+          },
+          {
+            "line": 11,
+            "severity": "CRITICAL",
+            "explanation": "FTP-related functions are being called. FTP is considered insecure. Use SSH/SFTP/SCP or some other encrypted protocol.",
+            "fix_suggestion": "Review and remediate according to the referenced CWE guidance.",
+            "citation": "CWE-319"
+          },
+          {
+            "line": 14,
+            "severity": "CRITICAL",
+            "explanation": "The FTP protocol is used for file transfer, which is considered insecure.",
+            "fix_suggestion": "Use SSH/SFTP/SCP or some other encrypted protocol.",
+            "citation": "CWE-319"
+          }
+        ],
+        "detected_any": true,
+        "detected_cwe": true,
+        "elapsed_s": 15.2
+      },
+      "b1": null,
+      "b2": null,
+      "no_bandit": null
+    },
+    {
+      "task_id": "CWE-321_author_1.py",
+      "phase": "recall",
+      "cwe": "CWE-321",
+      "system": {
+        "findings": [],
+        "detected_any": false,
+        "detected_cwe": false,
+        "elapsed_s": 7.95
+      },
+      "b1": null,
+      "b2": null,
+      "no_bandit": null
+    },
+    {
+      "task_id": "CWE-321_author_2.py",
+      "phase": "recall",
+      "cwe": "CWE-321",
+      "system": {
+        "findings": [],
+        "detected_any": false,
+        "detected_cwe": false,
+        "elapsed_s": 8.23
+      },
+      "b1": null,
+      "b2": null,
+      "no_bandit": null
+    },
+    {
+      "task_id": "CWE-326_author_1.py",
+      "phase": "recall",
+      "cwe": "CWE-326",
+      "system": {
+        "findings": [
+          {
+            "line": 9,
+            "severity": "WARNING",
+            "explanation": "RSA key size is below the recommended minimum of 2048 bits.",
+            "fix_suggestion": "Increase the RSA key size to at least 2048 bits.",
+            "citation": "CWE-326"
+          }
+        ],
+        "detected_any": true,
+        "detected_cwe": true,
+        "elapsed_s": 10.47
+      },
+      "b1": null,
+      "b2": null,
+      "no_bandit": null
+    },
+    {
+      "task_id": "CWE-326_author_2.py",
+      "phase": "recall",
+      "cwe": "CWE-326",
+      "system": {
+        "findings": [
+          {
+            "line": 9,
+            "severity": "WARNING",
+            "explanation": "DSA key size is below the NIST recommended minimum of 2048 bits.",
+            "fix_suggestion": "Increase the DSA key size to at least 2048 bits.",
+            "citation": "CWE-326"
+          }
+        ],
+        "detected_any": true,
+        "detected_cwe": true,
+        "elapsed_s": 11.21
+      },
+      "b1": null,
+      "b2": null,
+      "no_bandit": null
+    },
+    {
+      "task_id": "CWE-327_codeql_1.py",
+      "phase": "recall",
+      "cwe": "CWE-327",
+      "system": {
+        "findings": [],
+        "detected_any": false,
+        "detected_cwe": false,
+        "elapsed_s": 6.41
+      },
+      "b1": null,
+      "b2": null,
+      "no_bandit": null
+    },
+    {
+      "task_id": "CWE-327_codeql_2.py",
+      "phase": "recall",
+      "cwe": "CWE-327",
+      "system": {
+        "findings": [
+          {
+            "line": 11,
+            "severity": "WARNING",
+            "explanation": "The ssl.wrap_socket call uses the default SSL/TLS protocol version which may be insecure.",
+            "fix_suggestion": "Specify a secure TLS version like ssl.PROTOCOL_TLSv1_2 or higher.",
+            "citation": "CWE-327"
+          }
+        ],
+        "detected_any": true,
+        "detected_cwe": true,
+        "elapsed_s": 11.59
+      },
+      "b1": null,
+      "b2": null,
+      "no_bandit": null
+    },
+    {
+      "task_id": "CWE-327_codeql_3.py",
+      "phase": "recall",
+      "cwe": "CWE-327",
+      "system": {
+        "findings": [
+          {
+            "line": 8,
+            "severity": "CRITICAL",
+            "explanation": "Using MD5 for security purposes is insecure; consider using SHA256 or SHA3.",
+            "fix_suggestion": "Replace hashlib.md5 with hashlib.sha256 or hashlib.sha3_256.",
+            "citation": "CWE-327"
+          }
+        ],
+        "detected_any": true,
+        "detected_cwe": true,
+        "elapsed_s": 11.16
+      },
+      "b1": null,
+      "b2": null,
+      "no_bandit": null
+    },
+    {
+      "task_id": "CWE-327_codeql_4.py",
+      "phase": "recall",
+      "cwe": "CWE-327",
+      "system": {
+        "findings": [
+          {
+            "line": 3,
+            "severity": "WARNING",
+            "explanation": "SHA-256 is a one-way hash but using it with a predictable salt can weaken security.",
+            "fix_suggestion": "Use a random and unique salt for each password.",
+            "citation": "CWE-760"
+          },
+          {
+            "line": 3,
+            "severity": "INFO",
+            "explanation": "SHA-256 is considered secure but adding a unique salt per user would further enhance security.",
+            "fix_suggestion": "Consider using bcrypt or Argon2 for password hashing.",
+            "citation": ""
+          }
+        ],
+        "detected_any": true,
+        "detected_cwe": false,
+        "elapsed_s": 14.31
+      },
+      "b1": null,
+      "b2": null,
+      "no_bandit": null
+    },
+    {
+      "task_id": "CWE-329_sonar_1.py",
+      "phase": "recall",
+      "cwe": "CWE-329",
+      "system": {
+        "findings": [],
+        "detected_any": false,
+        "detected_cwe": false,
+        "elapsed_s": 13.63
+      },
+      "b1": null,
+      "b2": null,
+      "no_bandit": null
+    },
+    {
+      "task_id": "CWE-330_author_1.py",
+      "phase": "recall",
+      "cwe": "CWE-330",
+      "system": {
+        "findings": [
+          {
+            "line": 8,
+            "severity": "WARNING",
+            "explanation": "Use of insufficiently random values for security purposes.",
+            "fix_suggestion": "Use os.urandom() instead of random.randint()",
+            "citation": "CWE-330"
+          }
+        ],
+        "detected_any": true,
+        "detected_cwe": true,
+        "elapsed_s": 9.54
+      },
+      "b1": null,
+      "b2": null,
+      "no_bandit": null
+    },
+    {
+      "task_id": "CWE-331_author_1.py",
+      "phase": "recall",
+      "cwe": "CWE-331",
+      "system": {
+        "findings": [
+          {
+            "line": 9,
+            "severity": "WARNING",
+            "explanation": "The random module is used for security-critical operations without proper randomness.",
+            "fix_suggestion": "Use os.urandom() or secrets.token_bytes() for cryptographic purposes.",
+            "citation": "CWE-330"
+          },
+          {
+            "line": 5,
+            "severity": "INFO",
+            "explanation": "The function generates a random string but does not ensure unpredictability for security-sensitive use cases.",
+            "fix_suggestion": "Use os.urandom() or secrets.token_urlsafe() for secure randomness.",
+            "citation": "CWE-330"
+          }
+        ],
+        "detected_any": true,
+        "detected_cwe": true,
+        "elapsed_s": 15.27
+      },
+      "b1": null,
+      "b2": null,
+      "no_bandit": null
+    },
+    {
+      "task_id": "CWE-339_mitre_1.py",
+      "phase": "recall",
+      "cwe": "CWE-339",
+      "system": {
+        "findings": [
+          {
+            "line": 10,
+            "severity": "WARNING",
+            "explanation": "Use of insufficiently random values for cryptographic purposes.",
+            "fix_suggestion": "Use os.urandom(16) to generate a secure random key.",
+            "citation": "CWE-330"
+          }
+        ],
+        "detected_any": true,
+        "detected_cwe": true,
+        "elapsed_s": 10.87
+      },
+      "b1": null,
+      "b2": null,
+      "no_bandit": null
+    },
+    {
+      "task_id": "CWE-347_sonar_1.py",
+      "phase": "recall",
+      "cwe": "CWE-347",
+      "system": {
+        "findings": [
+          {
+            "line": 8,
+            "severity": "CRITICAL",
+            "explanation": "JWT token decoded with 'verify=False' disables signature verification.",
+            "fix_suggestion": "Set verify=True to enable JWT signature verification.",
+            "citation": "CWE-347"
+          }
+        ],
+        "detected_any": true,
+        "detected_cwe": true,
+        "elapsed_s": 10.13
+      },
+      "b1": null,
+      "b2": null,
+      "no_bandit": null
+    },
+    {
+      "task_id": "CWE-347_sonar_2.py",
+      "phase": "recall",
+      "cwe": "CWE-347",
+      "system": {
+        "findings": [
+          {
+            "line": 8,
+            "severity": "CRITICAL",
+            "explanation": "JWT token decoded without verifying the signature.",
+            "fix_suggestion": "Set verify_signature=True to ensure JWT integrity.",
+            "citation": "CWE-347"
+          }
+        ],
+        "detected_any": true,
+        "detected_cwe": true,
+        "elapsed_s": 9.97
+      },
+      "b1": null,
+      "b2": null,
+      "no_bandit": null
+    },
+    {
+      "task_id": "CWE-347_sonar_3.py",
+      "phase": "recall",
+      "cwe": "CWE-347",
+      "system": {
+        "findings": [],
+        "detected_any": false,
+        "detected_cwe": false,
+        "elapsed_s": 6.49
+      },
+      "b1": null,
+      "b2": null,
+      "no_bandit": null
+    },
+    {
+      "task_id": "CWE-367_author_1.py",
+      "phase": "recall",
+      "cwe": "CWE-367",
+      "system": {
+        "findings": [
+          {
+            "line": 10,
+            "severity": "WARNING",
+            "explanation": "File existence checked then opened without atomic operation, potentially allowing another process to modify the file between check and use.",
+            "fix_suggestion": "Use os.open with O_EXCL flag or os.replace for atomic operations.",
+            "citation": "CWE-367"
+          }
+        ],
+        "detected_any": true,
+        "detected_cwe": true,
+        "elapsed_s": 11.35
+      },
+      "b1": null,
+      "b2": null,
+      "no_bandit": null
+    },
+    {
+      "task_id": "CWE-377_codeql_1.py",
+      "phase": "recall",
+      "cwe": "CWE-377",
+      "system": {
+        "findings": [
+          {
+            "line": 8,
+            "severity": "CRITICAL",
+            "explanation": "Use of insecure and deprecated function (mktemp). This can lead to path traversal vulnerabilities.",
+            "fix_suggestion": "Use tempfile.NamedTemporaryFile instead.",
+            "citation": "CWE-22"
+          },
+          {
+            "line": 10,
+            "severity": "INFO",
+            "explanation": "Writing user input directly to a file without validation or sanitization.",
+            "fix_suggestion": "Validate and sanitize the input before writing it to the file.",
+            "citation": ""
+          }
+        ],
+        "detected_any": true,
+        "detected_cwe": true,
+        "elapsed_s": 13.96
+      },
+      "b1": null,
+      "b2": null,
+      "no_bandit": null
+    },
+    {
+      "task_id": "CWE-379_sonar_1.py",
+      "phase": "recall",
+      "cwe": "CWE-379",
+      "system": {
+        "findings": [
+          {
+            "line": 10,
+            "severity": "WARNING",
+            "explanation": "Use of insecure and deprecated function (mktemp).",
+            "fix_suggestion": "Use tempfile.NamedTemporaryFile instead.",
+            "citation": "CWE-377"
+          }
+        ],
+        "detected_any": true,
+        "detected_cwe": true,
+        "elapsed_s": 10.37
+      },
+      "b1": null,
+      "b2": null,
+      "no_bandit": null
+    },
+    {
+      "task_id": "CWE-385_mitre_1.py",
+      "phase": "recall",
+      "cwe": "CWE-385",
+      "system": {
+        "findings": [],
+        "detected_any": false,
+        "detected_cwe": false,
+        "elapsed_s": 6.5
+      },
+      "b1": null,
+      "b2": null,
+      "no_bandit": null
+    },
+    {
+      "task_id": "CWE-400_sonar_1.py",
+      "phase": "recall",
+      "cwe": "CWE-400",
+      "system": {
+        "findings": [
+          {
+            "line": 18,
+            "severity": "WARNING",
+            "explanation": "User-controlled string passed as regex pattern can cause a regular expression denial of service (CWE-730).",
+            "fix_suggestion": "Use re.escape() to escape special characters in the username before using it in the regex.",
+            "citation": "CWE-730"
+          }
+        ],
+        "detected_any": true,
+        "detected_cwe": true,
+        "elapsed_s": 12.69
+      },
+      "b1": null,
+      "b2": null,
+      "no_bandit": null
+    },
+    {
+      "task_id": "CWE-406_mitre_1.py",
+      "phase": "recall",
+      "cwe": "CWE-406",
+      "system": {
+        "findings": [],
+        "detected_any": false,
+        "detected_cwe": false,
+        "elapsed_s": 8.13
+      },
+      "b1": null,
+      "b2": null,
+      "no_bandit": null
+    },
+    {
+      "task_id": "CWE-414_author_1.py",
+      "phase": "recall",
+      "cwe": "CWE-414",
+      "system": {
+        "findings": [],
+        "detected_any": false,
+        "detected_cwe": false,
+        "elapsed_s": 7.33
+      },
+      "b1": null,
+      "b2": null,
+      "no_bandit": null
+    },
+    {
+      "task_id": "CWE-425_author_1.py",
+      "phase": "recall",
+      "cwe": "CWE-425",
+      "system": {
+        "findings": [
+          {
+            "line": 12,
+            "severity": "CRITICAL",
+            "explanation": "User input is directly used in file path construction without validation or sanitization.",
+            "fix_suggestion": "Use os.path.join to safely construct the file path and validate user input.",
+            "citation": "CWE-22"
+          },
+          {
+            "line": 12,
+            "severity": "WARNING",
+            "explanation": "The response content is directly rendered from a file, which could lead to cross-site scripting (XSS) if the file contains malicious HTML.",
+            "fix_suggestion": "Escape or sanitize any user input before rendering it in the HTTP response.",
+            "citation": "CWE-79"
+          }
+        ],
+        "detected_any": true,
+        "detected_cwe": true,
+        "elapsed_s": 16.51
+      },
+      "b1": null,
+      "b2": null,
+      "no_bandit": null
+    },
+    {
+      "task_id": "CWE-434_pearce_1.py",
+      "phase": "recall",
+      "cwe": "CWE-434",
+      "system": {
+        "findings": [
+          {
+            "line": 12,
+            "severity": "CRITICAL",
+            "explanation": "User input is directly used in file path without validation, leading to potential path traversal attacks.",
+            "fix_suggestion": "Sanitize or validate the filename before saving it.",
+            "citation": "CWE-22"
+          },
+          {
+            "line": 10,
+            "severity": "WARNING",
+            "explanation": "The function `flask.request.host` is used in constructing an HTTP request which can lead to host header injection issues.",
+            "fix_suggestion": "Avoid using `request.host` for external URLs; use explicit domain names or IP addresses.",
+            "citation": "CWE-20"
+          },
+          {
+            "line": 13,
+            "severity": "INFO",
+            "explanation": "Redirecting without validating the destination URL can lead to open redirect vulnerabilities.",
+            "fix_suggestion": "Validate and sanitize the target URL before redirection.",
+            "citation": "CWE-601"
+          }
+        ],
+        "detected_any": true,
+        "detected_cwe": true,
+        "elapsed_s": 20.88
+      },
+      "b1": null,
+      "b2": null,
+      "no_bandit": null
+    },
+    {
+      "task_id": "CWE-434_pearce_2.py",
+      "phase": "recall",
+      "cwe": "CWE-434",
+      "system": {
+        "findings": [
+          {
+            "line": 15,
+            "severity": "CRITICAL",
+            "explanation": "User input is used in an open() call without validation or sanitization.",
+            "fix_suggestion": "Sanitize or validate the file name before writing to disk.",
+            "citation": "CWE-22"
+          },
+          {
+            "line": 6,
+            "severity": "WARNING",
+            "explanation": "The route does not check if the user is authenticated before handling image uploads.",
+            "fix_suggestion": "Add authentication checks before processing the request.",
+            "citation": "CWE-306"
+          }
+        ],
+        "detected_any": true,
+        "detected_cwe": true,
+        "elapsed_s": 15.5
+      },
+      "b1": null,
+      "b2": null,
+      "no_bandit": null
+    },
+    {
+      "task_id": "CWE-454_author_1.py",
+      "phase": "recall",
+      "cwe": "CWE-454",
+      "system": {
+        "findings": [
+          {
+            "line": 11,
+            "severity": "CRITICAL",
+            "explanation": "Hardcoded password comparison in source code.",
+            "fix_suggestion": "Use environment variables or a configuration file for credentials.",
+            "citation": "CWE-259"
+          },
+          {
+            "line": 11,
+            "severity": "WARNING",
+            "explanation": "Password is compared to a literal string value.",
+            "fix_suggestion": "Store passwords securely and validate them using secure methods.",
+            "citation": "CWE-798"
+          }
+        ],
+        "detected_any": true,
+        "detected_cwe": true,
+        "elapsed_s": 15.42
+      },
+      "b1": null,
+      "b2": null,
+      "no_bandit": null
+    },
+    {
+      "task_id": "CWE-462_mitre_1.py",
+      "phase": "recall",
+      "cwe": "CWE-462",
+      "system": {
+        "findings": [
+          {
+            "line": 2,
+            "severity": "WARNING",
+            "explanation": "Data from request is passed to a file name './', 'file.txt'. This is a path traversal vulnerability.",
+            "fix_suggestion": "Use os.path.join and sanitize the input to prevent path traversal.",
+            "citation": "CWE-22"
+          },
+          {
+            "line": 10,
+            "severity": "INFO",
+            "explanation": "The variables basename and data are hardcoded as True. This may not be intended for a function that is supposed to take user input.",
+            "fix_suggestion": "Assign the output of foo() to basename and data instead of hardcoding them.",
+            "citation": ""
+          }
+        ],
+        "detected_any": true,
+        "detected_cwe": false,
+        "elapsed_s": 16.83
+      },
+      "b1": null,
+      "b2": null,
+      "no_bandit": null
+    },
+    {
+      "task_id": "CWE-477_author_1.py",
+      "phase": "recall",
+      "cwe": "CWE-477",
+      "system": {
+        "findings": [],
+        "detected_any": false,
+        "detected_cwe": false,
+        "elapsed_s": 6.07
+      },
+      "b1": null,
+      "b2": null,
+      "no_bandit": null
+    },
+    {
+      "task_id": "CWE-502_author_1.py",
+      "phase": "recall",
+      "cwe": "CWE-502",
+      "system": {
+        "findings": [],
+        "detected_any": false,
+        "detected_cwe": false,
+        "elapsed_s": 9.47
+      },
+      "b1": null,
+      "b2": null,
+      "no_bandit": null
+    },
+    {
+      "task_id": "CWE-502_codeql_1.py",
+      "phase": "recall",
+      "cwe": "CWE-502",
+      "system": {
+        "findings": [
+          {
+            "line": 9,
+            "severity": "WARNING",
+            "explanation": "Pickle and modules that wrap it can be unsafe when used to deserialize untrusted data, possible security issue.",
+            "fix_suggestion": "Use json, msgpack, or another safe serialization format instead of pickle.",
+            "citation": "CWE-502"
+          }
+        ],
+        "detected_any": true,
+        "detected_cwe": true,
+        "elapsed_s": 9.18
+      },
+      "b1": null,
+      "b2": null,
+      "no_bandit": null
+    },
+    {
+      "task_id": "CWE-502_mitre_1.py",
+      "phase": "recall",
+      "cwe": "CWE-502",
+      "system": {
+        "findings": [],
+        "detected_any": false,
+        "detected_cwe": false,
+        "elapsed_s": 10.84
+      },
+      "b1": null,
+      "b2": null,
+      "no_bandit": null
+    },
+    {
+      "task_id": "CWE-502_sonar_1.py",
+      "phase": "recall",
+      "cwe": "CWE-502",
+      "system": {
+        "findings": [
+          {
+            "line": 10,
+            "severity": "WARNING",
+            "explanation": "Unvalidated request input flows into return() without sanitization or type checking.",
+            "fix_suggestion": "Sanitize and validate the 'data' parameter before using it.",
+            "citation": "CWE-20"
+          },
+          {
+            "line": 11,
+            "severity": "CRITICAL",
+            "explanation": "Insecure deserialization using yaml.load without Loader parameter allows arbitrary code execution.",
+            "fix_suggestion": "Use yaml.safe_load() instead of yaml.load()",
+            "citation": "CWE-502"
+          }
+        ],
+        "detected_any": true,
+        "detected_cwe": true,
+        "elapsed_s": 16.51
+      },
+      "b1": null,
+      "b2": null,
+      "no_bandit": null
+    },
+    {
+      "task_id": "CWE-521_sonar_1.py",
+      "phase": "recall",
+      "cwe": "CWE-521",
+      "system": {
+        "findings": [],
+        "detected_any": false,
+        "detected_cwe": false,
+        "elapsed_s": 6.38
+      },
+      "b1": null,
+      "b2": null,
+      "no_bandit": null
+    },
+    {
+      "task_id": "CWE-521_sonar_2.py",
+      "phase": "recall",
+      "cwe": "CWE-521",
+      "system": {
+        "findings": [
+          {
+            "line": 11,
+            "severity": "CRITICAL",
+            "explanation": "Hardcoded empty password in database connection.",
+            "fix_suggestion": "Remove or replace the empty password with a secure value.",
+            "citation": "CWE-259"
+          },
+          {
+            "line": 11,
+            "severity": "WARNING",
+            "explanation": "Potential hardcoded secret in database credentials.",
+            "fix_suggestion": "Use environment variables or a secrets manager for sensitive information.",
+            "citation": "CWE-798"
+          }
+        ],
+        "detected_any": true,
+        "detected_cwe": true,
+        "elapsed_s": 14.05
+      },
+      "b1": null,
+      "b2": null,
+      "no_bandit": null
+    },
+    {
+      "task_id": "CWE-522_author_1.py",
+      "phase": "recall",
+      "cwe": "CWE-522",
+      "system": {
+        "findings": [
+          {
+            "line": 9,
+            "severity": "CRITICAL",
+            "explanation": "Possible hardcoded password: '' (CWE-259)",
+            "fix_suggestion": "Remove the empty password or replace it with a secure value.",
+            "citation": "CWE-798"
+          }
+        ],
+        "detected_any": true,
+        "detected_cwe": true,
+        "elapsed_s": 11.33
+      },
+      "b1": null,
+      "b2": null,
+      "no_bandit": null
+    },
+    {
+      "task_id": "CWE-522_pearce_1.py",
+      "phase": "recall",
+      "cwe": "CWE-522",
+      "system": {
+        "findings": [
+          {
+            "line": 17,
+            "severity": "CRITICAL",
+            "explanation": "Use of weak MD5 hash for security. Consider usedforsecurity=False",
+            "fix_suggestion": "Use SHA-256 or SHA-3 (hashlib.sha256) instead of weak hashes.",
+            "citation": "CWE-327"
+          },
+          {
+            "line": 20,
+            "severity": "WARNING",
+            "explanation": "Unvalidated request input ('request data') flows into execute() without sanitization or type checking \u2014 potential injection or data exposure.",
+            "fix_suggestion": "Validate and sanitize all request input before passing it to sinks.",
+            "citation": "CWE-20"
+          },
+          {
+            "line": 24,
+            "severity": "WARNING",
+            "explanation": "Unvalidated request input ('request data') flows into execute() without sanitization or type checking \u2014 potential injection or data exposure.",
+            "fix_suggestion": "Validate and sanitize all request input before passing it to sinks.",
+            "citation": "CWE-20"
+          }
+        ],
+        "detected_any": true,
+        "detected_cwe": false,
+        "elapsed_s": 12.68
+      },
+      "b1": null,
+      "b2": null,
+      "no_bandit": null
+    },
+    {
+      "task_id": "CWE-595_author_1.py",
+      "phase": "recall",
+      "cwe": "CWE-595",
+      "system": {
+        "findings": [
+          {
+            "line": 5,
+            "severity": "INFO",
+            "explanation": "Using object identity comparison (`is`) instead of value equality (`==`)",
+            "fix_suggestion": "Replace `is` with `==` for value comparison.",
+            "citation": "CWE-595"
+          }
+        ],
+        "detected_any": false,
+        "detected_cwe": true,
+        "elapsed_s": 10.78
+      },
+      "b1": null,
+      "b2": null,
+      "no_bandit": null
+    },
+    {
+      "task_id": "CWE-601_codeql_1.py",
+      "phase": "recall",
+      "cwe": "CWE-601",
+      "system": {
+        "findings": [
+          {
+            "line": 7,
+            "severity": "CRITICAL",
+            "explanation": "function already defined line 1",
+            "fix_suggestion": "Review and remediate according to the referenced CWE guidance.",
+            "citation": "E0102"
+          },
+          {
+            "line": 12,
+            "severity": "WARNING",
+            "explanation": "Unvalidated request input flows into redirect() without sanitization or type checking \u2014 potential injection or data exposure.",
+            "fix_suggestion": "Sanitize and validate the 'target' parameter before using it in the redirect()",
+            "citation": "CWE-20"
+          },
+          {
+            "line": 12,
+            "severity": "WARNING",
+            "explanation": "Unvalidated request input flows into return() without sanitization or type checking \u2014 potential injection or data exposure.",
+            "fix_suggestion": "Sanitize and validate the 'target' parameter before using it in the return()",
+            "citation": "CWE-20"
+          }
+        ],
+        "detected_any": true,
+        "detected_cwe": true,
+        "elapsed_s": 17.54
+      },
+      "b1": null,
+      "b2": null,
+      "no_bandit": null
+    },
+    {
+      "task_id": "CWE-601_sonar_1.py",
+      "phase": "recall",
+      "cwe": "CWE-601",
+      "system": {
+        "findings": [
+          {
+            "line": 8,
+            "severity": "WARNING",
+            "explanation": "Unvalidated request input flows into HttpResponseRedirect() without sanitization or type checking \u2014 potential injection or data exposure.",
+            "fix_suggestion": "Sanitize and validate the 'target' parameter before using it in HttpResponseRedirect()",
+            "citation": "CWE-20"
+          },
+          {
+            "line": 8,
+            "severity": "INFO",
+            "explanation": "Unvalidated request input flows into return() without sanitization or type checking \u2014 potential injection or data exposure.",
+            "fix_suggestion": "Sanitize and validate the 'target' parameter before using it in return()",
+            "citation": "CWE-20"
+          }
+        ],
+        "detected_any": true,
+        "detected_cwe": true,
+        "elapsed_s": 16.98
+      },
+      "b1": null,
+      "b2": null,
+      "no_bandit": null
+    },
+    {
+      "task_id": "CWE-601_sonar_2.py",
+      "phase": "recall",
+      "cwe": "CWE-601",
+      "system": {
+        "findings": [
+          {
+            "line": 12,
+            "severity": "CRITICAL",
+            "explanation": "User input is directly used in a redirect without validation or sanitization.",
+            "fix_suggestion": "Sanitize and validate the 'next' parameter before using it.",
+            "citation": "CWE-20"
+          },
+          {
+            "line": 12,
+            "severity": "WARNING",
+            "explanation": "Unvalidated request input flows into return() without sanitization or type checking.",
+            "fix_suggestion": "Sanitize and validate the 'next' parameter before returning it.",
+            "citation": "CWE-20"
+          }
+        ],
+        "detected_any": true,
+        "detected_cwe": true,
+        "elapsed_s": 15.89
+      },
+      "b1": null,
+      "b2": null,
+      "no_bandit": null
+    },
+    {
+      "task_id": "CWE-601_sonar_3.py",
+      "phase": "recall",
+      "cwe": "CWE-601",
+      "system": {
+        "findings": [
+          {
+            "line": 12,
+            "severity": "WARNING",
+            "explanation": "Flask response reflects unsanitized user input which could lead to a cross-site scripting (XSS) vulnerability.",
+            "fix_suggestion": "Sanitize or escape the 'next' parameter before using it in the response headers.",
+            "citation": "CWE-79"
+          },
+          {
+            "line": 12,
+            "severity": "CRITICAL",
+            "explanation": "Flask response contains unsanitized user input that could be reflected in HTML, leading to XSS.",
+            "fix_suggestion": "Use escape() or similar function to sanitize the 'next' parameter before including it in the response headers.",
+            "citation": "CWE-79"
+          },
+          {
+            "line": 11,
+            "severity": "INFO",
+            "explanation": "The 'next' value is directly used from request.args without validation, which could lead to path traversal if the URL contains malicious paths.",
+            "fix_suggestion": "Validate and sanitize the 'next' parameter before using it in the response headers.",
+            "citation": "CWE-22"
+          }
+        ],
+        "detected_any": true,
+        "detected_cwe": false,
+        "elapsed_s": 23.12
+      },
+      "b1": null,
+      "b2": null,
+      "no_bandit": null
+    },
+    {
+      "task_id": "CWE-601_sonar_4.py",
+      "phase": "recall",
+      "cwe": "CWE-601",
+      "system": {
+        "findings": [],
+        "detected_any": false,
+        "detected_cwe": false,
+        "elapsed_s": 18.56
+      },
+      "b1": null,
+      "b2": null,
+      "no_bandit": null
+    },
+    {
+      "task_id": "CWE-605_author_1.py",
+      "phase": "recall",
+      "cwe": "CWE-605",
+      "system": {
+        "findings": [
+          {
+            "line": 9,
+            "severity": "WARNING",
+            "explanation": "Possible binding to all interfaces.",
+            "fix_suggestion": "Review and remediate according to the referenced CWE guidance.",
+            "citation": "CWE-605"
+          }
+        ],
+        "detected_any": true,
+        "detected_cwe": true,
+        "elapsed_s": 7.1
+      },
+      "b1": null,
+      "b2": null,
+      "no_bandit": null
+    },
+    {
+      "task_id": "CWE-611_author_1.py",
+      "phase": "recall",
+      "cwe": "CWE-611",
+      "system": {
+        "findings": [
+          {
+            "line": 17,
+            "severity": "CRITICAL",
+            "explanation": "lxml.etree.fromstring() used without resolve_entities=False \u2014 vulnerable to XML External Entity (XXE) injection.",
+            "fix_suggestion": "Use defusedxml.ElementTree.fromstring(xml.read(), etree.ParseFlags(NO_EXTERNAL_ENTITIES))",
+            "citation": "CWE-611"
+          }
+        ],
+        "detected_any": true,
+        "detected_cwe": true,
+        "elapsed_s": 13.19
+      },
+      "b1": null,
+      "b2": null,
+      "no_bandit": null
+    },
+    {
+      "task_id": "CWE-611_codeql_1.py",
+      "phase": "recall",
+      "cwe": "CWE-611",
+      "system": {
+        "findings": [
+          {
+            "line": 12,
+            "severity": "CRITICAL",
+            "explanation": "lxml.etree.fromstring() used without resolve_entities=False \u2014 vulnerable to XML External Entity (XXE) injection.",
+            "fix_suggestion": "Use defusedxml.ElementTree.fromstring(xml_src, parser=defusedxml.lxml.ParserDefuseDTDEntityResolver())",
+            "citation": "CWE-611"
+          }
+        ],
+        "detected_any": true,
+        "detected_cwe": true,
+        "elapsed_s": 13.16
+      },
+      "b1": null,
+      "b2": null,
+      "no_bandit": null
+    },
+    {
+      "task_id": "CWE-611_sonar_1.py",
+      "phase": "recall",
+      "cwe": "CWE-611",
+      "system": {
+        "findings": [
+          {
+            "line": 7,
+            "severity": "WARNING",
+            "explanation": "lxml.XMLParser() used without resolve_entities=False \u2014 vulnerable to XML External Entity (XXE) injection.",
+            "fix_suggestion": "Use defusedxml or set resolve_entities=False on the lxml parser.",
+            "citation": "CWE-611"
+          }
+        ],
+        "detected_any": true,
+        "detected_cwe": true,
+        "elapsed_s": 14.35
+      },
+      "b1": null,
+      "b2": null,
+      "no_bandit": null
+    },
+    {
+      "task_id": "CWE-611_sonar_2.py",
+      "phase": "recall",
+      "cwe": "CWE-611",
+      "system": {
+        "findings": [
+          {
+            "line": 8,
+            "severity": "WARNING",
+            "explanation": "lxml.XMLParser() used without resolve_entities=False \u2014 vulnerable to XML External Entity (XXE) injection.",
+            "fix_suggestion": "Use defusedxml or set resolve_entities=False on the lxml parser.",
+            "citation": "CWE-611"
+          },
+          {
+            "line": 11,
+            "severity": "WARNING",
+            "explanation": "lxml.XMLSchema() used without resolve_entities=False \u2014 vulnerable to XML External Entity (XXE) injection.",
+            "fix_suggestion": "Use defusedxml or set resolve_entities=False on the lxml parser.",
+            "citation": "CWE-611"
+          }
+        ],
+        "detected_any": true,
+        "detected_cwe": true,
+        "elapsed_s": 18.95
+      },
+      "b1": null,
+      "b2": null,
+      "no_bandit": null
+    },
+    {
+      "task_id": "CWE-611_sonar_3.py",
+      "phase": "recall",
+      "cwe": "CWE-611",
+      "system": {
+        "findings": [
+          {
+            "line": 9,
+            "severity": "WARNING",
+            "explanation": "lxml.XMLParser() used without resolve_entities=False \u2014 vulnerable to XML External Entity (XXE) injection.",
+            "fix_suggestion": "Use defusedxml or set resolve_entities=False on the lxml parser.",
+            "citation": "CWE-611"
+          },
+          {
+            "line": 13,
+            "severity": "WARNING",
+            "explanation": "lxml.XSLT() used without resolve_entities=False \u2014 vulnerable to XML External Entity (XXE) injection.",
+            "fix_suggestion": "Use defusedxml or set resolve_entities=False on the lxml parser.",
+            "citation": "CWE-611"
+          }
+        ],
+        "detected_any": true,
+        "detected_cwe": true,
+        "elapsed_s": 19.34
+      },
+      "b1": null,
+      "b2": null,
+      "no_bandit": null
+    },
+    {
+      "task_id": "CWE-611_sonar_4.py",
+      "phase": "recall",
+      "cwe": "CWE-611",
+      "system": {
+        "findings": [
+          {
+            "line": 7,
+            "severity": "CRITICAL",
+            "explanation": "Using xml.sax.make_parser to parse untrusted XML data is known to be vulnerable to XML attacks.",
+            "fix_suggestion": "Replace xml.sax.make_parser with its defusedxml equivalent function or make sure defusedxml.defuse_stdlib() is called.",
+            "citation": "CWE-20"
+          },
+          {
+            "line": 13,
+            "severity": "INFO",
+            "explanation": "The code does not validate the input file path before parsing it.",
+            "fix_suggestion": "Validate and sanitize the file path to prevent path traversal attacks.",
+            "citation": "CWE-37"
+          }
+        ],
+        "detected_any": true,
+        "detected_cwe": true,
+        "elapsed_s": 17.82
+      },
+      "b1": null,
+      "b2": null,
+      "no_bandit": null
+    },
+    {
+      "task_id": "CWE-641_sonar_1.py",
+      "phase": "recall",
+      "cwe": "CWE-641",
+      "system": {
+        "findings": [],
+        "detected_any": false,
+        "detected_cwe": false,
+        "elapsed_s": 14.99
+      },
+      "b1": null,
+      "b2": null,
+      "no_bandit": null
+    },
+    {
+      "task_id": "CWE-643_codeql_1.py",
+      "phase": "recall",
+      "cwe": "CWE-643",
+      "system": {
+        "findings": [
+          {
+            "line": 16,
+            "severity": "CRITICAL",
+            "explanation": "The `etree.parse()` function is used without `resolve_entities=False`, making it vulnerable to XML External Entity (XXE) injection.",
+            "fix_suggestion": "Use `etree.parse(f, resolve_entities=False)` to prevent XXE attacks.",
+            "citation": "CWE-611"
+          },
+          {
+            "line": 17,
+            "severity": "WARNING",
+            "explanation": "Unvalidated request input flows into the XPath query without sanitization or type checking, potentially leading to injection vulnerabilities.",
+            "fix_suggestion": "Sanitize and validate `value` before using it in the XPath query.",
+            "citation": "CWE-20"
+          }
+        ],
+        "detected_any": true,
+        "detected_cwe": true,
+        "elapsed_s": 19.33
+      },
+      "b1": null,
+      "b2": null,
+      "no_bandit": null
+    },
+    {
+      "task_id": "CWE-643_sonar_1.py",
+      "phase": "recall",
+      "cwe": "CWE-643",
+      "system": {
+        "findings": [
+          {
+            "line": 4,
+            "severity": "CRITICAL",
+            "explanation": "Using xml.etree.ElementTree.parse to parse untrusted XML data is known to be vulnerable to XML attacks.",
+            "fix_suggestion": "Replace with defusedxml's equivalent function or call `defusedxml.defuse_stdlib()`.",
+            "citation": "CWE-20"
+          }
+        ],
+        "detected_any": true,
+        "detected_cwe": true,
+        "elapsed_s": 20.34
+      },
+      "b1": null,
+      "b2": null,
+      "no_bandit": null
+    },
+    {
+      "task_id": "CWE-703_author_1.py",
+      "phase": "recall",
+      "cwe": "CWE-703",
+      "system": {
+        "findings": [],
+        "detected_any": false,
+        "detected_cwe": false,
+        "elapsed_s": 7.08
+      },
+      "b1": null,
+      "b2": null,
+      "no_bandit": null
+    },
+    {
+      "task_id": "CWE-703_author_2.py",
+      "phase": "recall",
+      "cwe": "CWE-703",
+      "system": {
+        "findings": [],
+        "detected_any": false,
+        "detected_cwe": false,
+        "elapsed_s": 6.27
+      },
+      "b1": null,
+      "b2": null,
+      "no_bandit": null
+    },
+    {
+      "task_id": "CWE-703_author_3.py",
+      "phase": "recall",
+      "cwe": "CWE-703",
+      "system": {
+        "findings": [],
+        "detected_any": false,
+        "detected_cwe": false,
+        "elapsed_s": 6.0
+      },
+      "b1": null,
+      "b2": null,
+      "no_bandit": null
+    },
+    {
+      "task_id": "CWE-730_author_1.py",
+      "phase": "recall",
+      "cwe": "CWE-730",
+      "system": {
+        "findings": [],
+        "detected_any": false,
+        "detected_cwe": false,
+        "elapsed_s": 5.79
+      },
+      "b1": null,
+      "b2": null,
+      "no_bandit": null
+    },
+    {
+      "task_id": "CWE-730_codeql_1.py",
+      "phase": "recall",
+      "cwe": "CWE-730",
+      "system": {
+        "findings": [
+          {
+            "line": 12,
+            "severity": "WARNING",
+            "explanation": "User input directly used in a regex search without validation or escaping.",
+            "fix_suggestion": "Validate and escape user input before using it in the regex pattern.",
+            "citation": "CWE-606"
+          },
+          {
+            "line": 13,
+            "severity": "CRITICAL",
+            "explanation": "User-controlled string passed as regex pattern can cause a regular expression denial of service (CWE-730).",
+            "fix_suggestion": "Use re.compile with re.IGNORECASE | re.VERBOSE to mitigate.",
+            "citation": "CWE-730"
+          }
+        ],
+        "detected_any": true,
+        "detected_cwe": true,
+        "elapsed_s": 16.9
+      },
+      "b1": null,
+      "b2": null,
+      "no_bandit": null
+    },
+    {
+      "task_id": "CWE-730_codeql_2.py",
+      "phase": "recall",
+      "cwe": "CWE-730",
+      "system": {
+        "findings": [
+          {
+            "line": 12,
+            "severity": "CRITICAL",
+            "explanation": "User-controlled string passed as regex pattern can cause a regular expression denial of service (CWE-730).",
+            "fix_suggestion": "Validate and sanitize the input before using it in re.compile.",
+            "citation": "CWE-730"
+          },
+          {
+            "line": 12,
+            "severity": "WARNING",
+            "explanation": "User-controlled string passed as regex pattern can lead to CRLF injection (CWE-93).",
+            "fix_suggestion": "Validate and sanitize the input before using it in re.compile.",
+            "citation": "CWE-93"
+          }
+        ],
+        "detected_any": true,
+        "detected_cwe": true,
+        "elapsed_s": 16.82
+      },
+      "b1": null,
+      "b2": null,
+      "no_bandit": null
+    },
+    {
+      "task_id": "CWE-732_author_1.py",
+      "phase": "recall",
+      "cwe": "CWE-732",
+      "system": {
+        "findings": [
+          {
+            "line": 10,
+            "severity": "WARNING",
+            "explanation": "Chmod setting a permissive mask 0o755 on file (test.bin).",
+            "fix_suggestion": "Use more restrictive permissions like 0o644.",
+            "citation": "CWE-732"
+          },
+          {
+            "line": 11,
+            "severity": "CRITICAL",
+            "explanation": "Starting a process with a shell: This could result in a command injection vulnerability.",
+            "fix_suggestion": "Use subprocess.run() instead of os.system().",
+            "citation": "CWE-78"
+          }
+        ],
+        "detected_any": true,
+        "detected_cwe": true,
+        "elapsed_s": 16.75
+      },
+      "b1": null,
+      "b2": null,
+      "no_bandit": null
+    },
+    {
+      "task_id": "CWE-759_mitre_1.py",
+      "phase": "recall",
+      "cwe": "CWE-759",
+      "system": {
+        "findings": [
+          {
+            "line": 8,
+            "severity": "WARNING",
+            "explanation": "MD5 is considered weak and should not be used for security-relevant operations.",
+            "fix_suggestion": "Replace MD5 with a stronger hash function like SHA256.",
+            "citation": "CWE-327"
+          },
+          {
+            "line": 10,
+            "severity": "CRITICAL",
+            "explanation": "Using MD5 for hashing passwords is insecure; it can be easily reversed.",
+            "fix_suggestion": "Use SHA256 or better for password hashing.",
+            "citation": "CWE-327"
+          }
+        ],
+        "detected_any": true,
+        "detected_cwe": true,
+        "elapsed_s": 15.45
+      },
+      "b1": null,
+      "b2": null,
+      "no_bandit": null
+    },
+    {
+      "task_id": "CWE-760_sonar_1.py",
+      "phase": "recall",
+      "cwe": "CWE-760",
+      "system": {
+        "findings": [],
+        "detected_any": false,
+        "detected_cwe": false,
+        "elapsed_s": 6.28
+      },
+      "b1": null,
+      "b2": null,
+      "no_bandit": null
+    },
+    {
+      "task_id": "CWE-776_codeql_1.py",
+      "phase": "recall",
+      "cwe": "CWE-776",
+      "system": {
+        "findings": [
+          {
+            "line": 13,
+            "severity": "WARNING",
+            "explanation": "User input from the request is directly used without validation or sanitization.",
+            "fix_suggestion": "Validate and sanitize user inputs before processing them.",
+            "citation": "CWE-75"
+          },
+          {
+            "line": 14,
+            "severity": "CRITICAL",
+            "explanation": "Using xml.etree.ElementTree.fromstring to parse untrusted XML data is known to be vulnerable to XML attacks.",
+            "fix_suggestion": "Replace xml.etree.ElementTree.fromstring with its defusedxml equivalent function or make sure defusedxml.defuse_stdlib() is called.",
+            "citation": "CWE-20"
+          }
+        ],
+        "detected_any": true,
+        "detected_cwe": true,
+        "elapsed_s": 17.06
+      },
+      "b1": null,
+      "b2": null,
+      "no_bandit": null
+    },
+    {
+      "task_id": "CWE-798_author_1.py",
+      "phase": "recall",
+      "cwe": "CWE-798",
+      "system": {
+        "findings": [
+          {
+            "line": 7,
+            "severity": "CRITICAL",
+            "explanation": "Hardcoded password in database connection string.",
+            "fix_suggestion": "Use environment variables or a configuration file to store sensitive information.",
+            "citation": "CWE-259"
+          }
+        ],
+        "detected_any": true,
+        "detected_cwe": true,
+        "elapsed_s": 9.78
+      },
+      "b1": null,
+      "b2": null,
+      "no_bandit": null
+    },
+    {
+      "task_id": "CWE-798_codeql_1.py",
+      "phase": "recall",
+      "cwe": "CWE-798",
+      "system": {
+        "findings": [
+          {
+            "line": 12,
+            "severity": "CRITICAL",
+            "explanation": "Hardcoded credential comparison: 'password' is compared to a literal string value \u2014 never store credentials in source code.",
+            "fix_suggestion": "Use environment variables or a secrets manager for storing passwords.",
+            "citation": "CWE-259"
+          },
+          {
+            "line": 12,
+            "severity": "WARNING",
+            "explanation": "Possible hardcoded password: 'myPa55word'",
+            "fix_suggestion": "Remove this hard-coded password and use secure methods to manage credentials.",
+            "citation": "CWE-798"
+          }
+        ],
+        "detected_any": true,
+        "detected_cwe": true,
+        "elapsed_s": 15.79
+      },
+      "b1": null,
+      "b2": null,
+      "no_bandit": null
+    },
+    {
+      "task_id": "CWE-827_sonar_1.py",
+      "phase": "recall",
+      "cwe": "CWE-827",
+      "system": {
+        "findings": [
+          {
+            "line": 8,
+            "severity": "WARNING",
+            "explanation": "lxml.XMLParser() used without resolve_entities=False \u2014 vulnerable to XML External Entity (XXE) injection.",
+            "fix_suggestion": "Use defusedxml or set resolve_entities=False on the lxml parser.",
+            "citation": "CWE-611"
+          }
+        ],
+        "detected_any": true,
+        "detected_cwe": true,
+        "elapsed_s": 11.52
+      },
+      "b1": null,
+      "b2": null,
+      "no_bandit": null
+    },
+    {
+      "task_id": "CWE-835_author_1.py",
+      "phase": "recall",
+      "cwe": "CWE-835",
+      "system": {
+        "findings": [],
+        "detected_any": false,
+        "detected_cwe": false,
+        "elapsed_s": 5.88
+      },
+      "b1": null,
+      "b2": null,
+      "no_bandit": null
+    },
+    {
+      "task_id": "CWE-841_mitre_1.py",
+      "phase": "recall",
+      "cwe": "CWE-841",
+      "system": {
+        "findings": [],
+        "detected_any": false,
+        "detected_cwe": false,
+        "elapsed_s": 6.41
+      },
+      "b1": null,
+      "b2": null,
+      "no_bandit": null
+    },
+    {
+      "task_id": "CWE-918_codeql_1.py",
+      "phase": "recall",
+      "cwe": "CWE-918",
+      "system": {
+        "findings": [
+          {
+            "line": 10,
+            "severity": "WARNING",
+            "explanation": "The function returns raw response text which could lead to XSS if the content is not properly escaped.",
+            "fix_suggestion": "Escape or sanitize user input before rendering it in HTML responses.",
+            "citation": "CWE-79"
+          },
+          {
+            "line": 13,
+            "severity": "CRITICAL",
+            "explanation": "The `requests.get(url)` call is vulnerable to SSRF attacks due to the user-controlled `subdomain` parameter.",
+            "fix_suggestion": "Validate and sanitize the `subdomain` input or use a safer library like `httpx` with proper configuration.",
+            "citation": "CWE-918"
+          }
+        ],
+        "detected_any": true,
+        "detected_cwe": true,
+        "elapsed_s": 16.6
+      },
+      "b1": null,
+      "b2": null,
+      "no_bandit": null
+    },
+    {
+      "task_id": "CWE-918_codeql_2.py",
+      "phase": "recall",
+      "cwe": "CWE-918",
+      "system": {
+        "findings": [
+          {
+            "line": 14,
+            "severity": "INFO",
+            "explanation": "The function retrieves user_id from request.args without additional validation or sanitization.",
+            "fix_suggestion": "Validate and sanitize `user_id` to prevent potential injection attacks.",
+            "citation": "CWE-20"
+          },
+          {
+            "line": 15,
+            "severity": "CRITICAL",
+            "explanation": "User input is directly concatenated into the URL, leading to potential host header injection.",
+            "fix_suggestion": "Use `url = f'https://api.github.com/users/{user_id}'` or `url = 'https://api.github.com/users/' + user_id` and validate `user_id`.",
+            "citation": "CWE-20"
+          },
+          {
+            "line": 16,
+            "severity": "WARNING",
+            "explanation": "The response from the external API is returned without validation or sanitization, which could expose sensitive information.",
+            "fix_suggestion": "Parse the JSON response and validate its structure before returning it.",
+            "citation": "CWE-20"
+          }
+        ],
+        "detected_any": true,
+        "detected_cwe": true,
+        "elapsed_s": 21.29
+      },
+      "b1": null,
+      "b2": null,
+      "no_bandit": null
+    },
+    {
+      "task_id": "CWE-941_mitre_1.py",
+      "phase": "recall",
+      "cwe": "CWE-941",
+      "system": {
+        "findings": [],
+        "detected_any": false,
+        "detected_cwe": false,
+        "elapsed_s": 6.61
+      },
+      "b1": null,
+      "b2": null,
+      "no_bandit": null
+    },
+    {
+      "task_id": "CWE-943_sonar_1.py",
+      "phase": "recall",
+      "cwe": "CWE-943",
+      "system": {
+        "findings": [
+          {
+            "line": 11,
+            "severity": "CRITICAL",
+            "explanation": "DynamoDB FilterExpression is tainted by user input without proper sanitization.",
+            "fix_suggestion": "Use parameterized queries or sanitize the input before constructing the expression.",
+            "citation": "CWE-943"
+          },
+          {
+            "line": 6,
+            "severity": "WARNING",
+            "explanation": "Hardcoded comparison of password with a literal string may indicate weak authentication.",
+            "fix_suggestion": "Use secure hashing and verification for passwords instead of direct comparison.",
+            "citation": "CWE-259"
+          }
+        ],
+        "detected_any": true,
+        "detected_cwe": true,
+        "elapsed_s": 14.86
+      },
+      "b1": null,
+      "b2": null,
+      "no_bandit": null
+    }
+  ],
+  "raw_fpr": [
+    {
+      "task_id": "Python/163",
+      "phase": "fpr",
+      "system": {
+        "findings": [],
+        "false_positive": false
+      },
+      "b1": null,
+      "b2": null,
+      "no_bandit": null
+    },
+    {
+      "task_id": "Python/28",
+      "phase": "fpr",
+      "system": {
+        "findings": [],
+        "false_positive": false
+      },
+      "b1": null,
+      "b2": null,
+      "no_bandit": null
+    },
+    {
+      "task_id": "Python/6",
+      "phase": "fpr",
+      "system": {
+        "findings": [],
+        "false_positive": false
+      },
+      "b1": null,
+      "b2": null,
+      "no_bandit": null
+    },
+    {
+      "task_id": "Python/70",
+      "phase": "fpr",
+      "system": {
+        "findings": [],
+        "false_positive": false
+      },
+      "b1": null,
+      "b2": null,
+      "no_bandit": null
+    },
+    {
+      "task_id": "Python/62",
+      "phase": "fpr",
+      "system": {
+        "findings": [],
+        "false_positive": false
+      },
+      "b1": null,
+      "b2": null,
+      "no_bandit": null
+    },
+    {
+      "task_id": "Python/57",
+      "phase": "fpr",
+      "system": {
+        "findings": [],
+        "false_positive": false
+      },
+      "b1": null,
+      "b2": null,
+      "no_bandit": null
+    },
+    {
+      "task_id": "Python/35",
+      "phase": "fpr",
+      "system": {
+        "findings": [],
+        "false_positive": false
+      },
+      "b1": null,
+      "b2": null,
+      "no_bandit": null
+    },
+    {
+      "task_id": "Python/26",
+      "phase": "fpr",
+      "system": {
+        "findings": [],
+        "false_positive": false
+      },
+      "b1": null,
+      "b2": null,
+      "no_bandit": null
+    },
+    {
+      "task_id": "Python/139",
+      "phase": "fpr",
+      "system": {
+        "findings": [],
+        "false_positive": false
+      },
+      "b1": null,
+      "b2": null,
+      "no_bandit": null
+    },
+    {
+      "task_id": "Python/22",
+      "phase": "fpr",
+      "system": {
+        "findings": [],
+        "false_positive": false
+      },
+      "b1": null,
+      "b2": null,
+      "no_bandit": null
+    },
+    {
+      "task_id": "Python/151",
+      "phase": "fpr",
+      "system": {
+        "findings": [],
+        "false_positive": false
+      },
+      "b1": null,
+      "b2": null,
+      "no_bandit": null
+    },
+    {
+      "task_id": "Python/108",
+      "phase": "fpr",
+      "system": {
+        "findings": [],
+        "false_positive": false
+      },
+      "b1": null,
+      "b2": null,
+      "no_bandit": null
+    },
+    {
+      "task_id": "Python/8",
+      "phase": "fpr",
+      "system": {
+        "findings": [],
+        "false_positive": false
+      },
+      "b1": null,
+      "b2": null,
+      "no_bandit": null
+    },
+    {
+      "task_id": "Python/7",
+      "phase": "fpr",
+      "system": {
+        "findings": [],
+        "false_positive": false
+      },
+      "b1": null,
+      "b2": null,
+      "no_bandit": null
+    },
+    {
+      "task_id": "Python/23",
+      "phase": "fpr",
+      "system": {
+        "findings": [],
+        "false_positive": false
+      },
+      "b1": null,
+      "b2": null,
+      "no_bandit": null
+    },
+    {
+      "task_id": "Python/55",
+      "phase": "fpr",
+      "system": {
+        "findings": [],
+        "false_positive": false
+      },
+      "b1": null,
+      "b2": null,
+      "no_bandit": null
+    },
+    {
+      "task_id": "Python/59",
+      "phase": "fpr",
+      "system": {
+        "findings": [],
+        "false_positive": false
+      },
+      "b1": null,
+      "b2": null,
+      "no_bandit": null
+    },
+    {
+      "task_id": "Python/129",
+      "phase": "fpr",
+      "system": {
+        "findings": [],
+        "false_positive": false
+      },
+      "b1": null,
+      "b2": null,
+      "no_bandit": null
+    },
+    {
+      "task_id": "Python/161",
+      "phase": "fpr",
+      "system": {
+        "findings": [],
+        "false_positive": false
+      },
+      "b1": null,
+      "b2": null,
+      "no_bandit": null
+    },
+    {
+      "task_id": "Python/143",
+      "phase": "fpr",
+      "system": {
+        "findings": [],
+        "false_positive": false
+      },
+      "b1": null,
+      "b2": null,
+      "no_bandit": null
+    },
+    {
+      "task_id": "Python/50",
+      "phase": "fpr",
+      "system": {
+        "findings": [],
+        "false_positive": false
+      },
+      "b1": null,
+      "b2": null,
+      "no_bandit": null
+    },
+    {
+      "task_id": "Python/155",
+      "phase": "fpr",
+      "system": {
+        "findings": [],
+        "false_positive": false
+      },
+      "b1": null,
+      "b2": null,
+      "no_bandit": null
+    },
+    {
+      "task_id": "Python/107",
+      "phase": "fpr",
+      "system": {
+        "findings": [],
+        "false_positive": false
+      },
+      "b1": null,
+      "b2": null,
+      "no_bandit": null
+    },
+    {
+      "task_id": "Python/56",
+      "phase": "fpr",
+      "system": {
+        "findings": [],
+        "false_positive": false
+      },
+      "b1": null,
+      "b2": null,
+      "no_bandit": null
+    },
+    {
+      "task_id": "Python/114",
+      "phase": "fpr",
+      "system": {
+        "findings": [],
+        "false_positive": false
+      },
+      "b1": null,
+      "b2": null,
+      "no_bandit": null
+    },
+    {
+      "task_id": "Python/71",
+      "phase": "fpr",
+      "system": {
+        "findings": [],
+        "false_positive": false
+      },
+      "b1": null,
+      "b2": null,
+      "no_bandit": null
+    },
+    {
+      "task_id": "Python/1",
+      "phase": "fpr",
+      "system": {
+        "findings": [],
+        "false_positive": false
+      },
+      "b1": null,
+      "b2": null,
+      "no_bandit": null
+    },
+    {
+      "task_id": "Python/40",
+      "phase": "fpr",
+      "system": {
+        "findings": [],
+        "false_positive": false
+      },
+      "b1": null,
+      "b2": null,
+      "no_bandit": null
+    },
+    {
+      "task_id": "Python/152",
+      "phase": "fpr",
+      "system": {
+        "findings": [],
+        "false_positive": false
+      },
+      "b1": null,
+      "b2": null,
+      "no_bandit": null
+    },
+    {
+      "task_id": "Python/87",
+      "phase": "fpr",
+      "system": {
+        "findings": [],
+        "false_positive": false
+      },
+      "b1": null,
+      "b2": null,
+      "no_bandit": null
+    },
+    {
+      "task_id": "Python/138",
+      "phase": "fpr",
+      "system": {
+        "findings": [],
+        "false_positive": false
+      },
+      "b1": null,
+      "b2": null,
+      "no_bandit": null
+    },
+    {
+      "task_id": "Python/39",
+      "phase": "fpr",
+      "system": {
+        "findings": [],
+        "false_positive": false
+      },
+      "b1": null,
+      "b2": null,
+      "no_bandit": null
+    },
+    {
+      "task_id": "Python/148",
+      "phase": "fpr",
+      "system": {
+        "findings": [],
+        "false_positive": false
+      },
+      "b1": null,
+      "b2": null,
+      "no_bandit": null
+    },
+    {
+      "task_id": "Python/86",
+      "phase": "fpr",
+      "system": {
+        "findings": [],
+        "false_positive": false
+      },
+      "b1": null,
+      "b2": null,
+      "no_bandit": null
+    },
+    {
+      "task_id": "Python/156",
+      "phase": "fpr",
+      "system": {
+        "findings": [],
+        "false_positive": false
+      },
+      "b1": null,
+      "b2": null,
+      "no_bandit": null
+    },
+    {
+      "task_id": "Python/149",
+      "phase": "fpr",
+      "system": {
+        "findings": [],
+        "false_positive": false
+      },
+      "b1": null,
+      "b2": null,
+      "no_bandit": null
+    },
+    {
+      "task_id": "Python/97",
+      "phase": "fpr",
+      "system": {
+        "findings": [],
+        "false_positive": false
+      },
+      "b1": null,
+      "b2": null,
+      "no_bandit": null
+    },
+    {
+      "task_id": "Python/12",
+      "phase": "fpr",
+      "system": {
+        "findings": [],
+        "false_positive": false
+      },
+      "b1": null,
+      "b2": null,
+      "no_bandit": null
+    },
+    {
+      "task_id": "Python/45",
+      "phase": "fpr",
+      "system": {
+        "findings": [],
+        "false_positive": false
+      },
+      "b1": null,
+      "b2": null,
+      "no_bandit": null
+    },
+    {
+      "task_id": "Python/135",
+      "phase": "fpr",
+      "system": {
+        "findings": [],
+        "false_positive": false
+      },
+      "b1": null,
+      "b2": null,
+      "no_bandit": null
+    },
+    {
+      "task_id": "Python/44",
+      "phase": "fpr",
+      "system": {
+        "findings": [],
+        "false_positive": false
+      },
+      "b1": null,
+      "b2": null,
+      "no_bandit": null
+    },
+    {
+      "task_id": "Python/77",
+      "phase": "fpr",
+      "system": {
+        "findings": [],
+        "false_positive": false
+      },
+      "b1": null,
+      "b2": null,
+      "no_bandit": null
+    },
+    {
+      "task_id": "Python/33",
+      "phase": "fpr",
+      "system": {
+        "findings": [],
+        "false_positive": false
+      },
+      "b1": null,
+      "b2": null,
+      "no_bandit": null
+    },
+    {
+      "task_id": "Python/103",
+      "phase": "fpr",
+      "system": {
+        "findings": [],
+        "false_positive": false
+      },
+      "b1": null,
+      "b2": null,
+      "no_bandit": null
+    },
+    {
+      "task_id": "Python/5",
+      "phase": "fpr",
+      "system": {
+        "findings": [],
+        "false_positive": false
+      },
+      "b1": null,
+      "b2": null,
+      "no_bandit": null
+    },
+    {
+      "task_id": "Python/93",
+      "phase": "fpr",
+      "system": {
+        "findings": [],
+        "false_positive": false
+      },
+      "b1": null,
+      "b2": null,
+      "no_bandit": null
+    },
+    {
+      "task_id": "Python/58",
+      "phase": "fpr",
+      "system": {
+        "findings": [],
+        "false_positive": false
+      },
+      "b1": null,
+      "b2": null,
+      "no_bandit": null
+    },
+    {
+      "task_id": "Python/68",
+      "phase": "fpr",
+      "system": {
+        "findings": [],
+        "false_positive": false
+      },
+      "b1": null,
+      "b2": null,
+      "no_bandit": null
+    },
+    {
+      "task_id": "Python/15",
+      "phase": "fpr",
+      "system": {
+        "findings": [],
+        "false_positive": false
+      },
+      "b1": null,
+      "b2": null,
+      "no_bandit": null
+    },
+    {
+      "task_id": "Python/48",
+      "phase": "fpr",
+      "system": {
+        "findings": [],
+        "false_positive": false
+      },
+      "b1": null,
+      "b2": null,
+      "no_bandit": null
+    }
+  ]
+}
