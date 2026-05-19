@@ -83,6 +83,19 @@ def download_cross_encoder():
     print(f"  [cross-encoder] Saved → {dest}")
 
 
+def download_bi_encoder():
+    from sentence_transformers import SentenceTransformer
+    dest = MODELS_DIR / "all-MiniLM-L6-v2"
+    if (dest / "config.json").exists():
+        print(f"  [bi-encoder] Already present at {dest} — skipping.")
+        return
+    print(f"  [bi-encoder] Downloading all-MiniLM-L6-v2 (~90 MB) ...")
+    dest.mkdir(parents=True, exist_ok=True)
+    model = SentenceTransformer("sentence-transformers/all-MiniLM-L6-v2")
+    model.save(str(dest))
+    print(f"  [bi-encoder] Saved → {dest}")
+
+
 def main():
     parser = argparse.ArgumentParser(description="Download PythonGuard models")
     parser.add_argument(
@@ -98,6 +111,11 @@ def main():
         action="store_true",
         help="Skip downloading the cross-encoder re-ranking model",
     )
+    parser.add_argument(
+        "--skip-bi-encoder",
+        action="store_true",
+        help="Skip downloading the bi-encoder embedding model (all-MiniLM-L6-v2)",
+    )
     args = parser.parse_args()
 
     MODELS_DIR.mkdir(exist_ok=True)
@@ -106,7 +124,16 @@ def main():
 
     failed = []
 
-    # Cross-encoder (small, download first)
+    # Bi-encoder (small, required by Layer 2 retriever)
+    if not args.skip_bi_encoder:
+        print(f"{'─'*60}")
+        try:
+            download_bi_encoder()
+        except Exception as e:
+            print(f"  [bi-encoder] ERROR: {e}", file=sys.stderr)
+            failed.append("bi-encoder")
+
+    # Cross-encoder (small, download next)
     if not args.skip_cross_encoder:
         print(f"{'─'*60}")
         try:
@@ -125,7 +152,7 @@ def main():
             failed.append(key)
 
     print(f"\n{'─'*60}")
-    succeeded = [k for k in (["cross-encoder"] + args.models) if k not in failed]
+    succeeded = [k for k in (["bi-encoder", "cross-encoder"] + args.models) if k not in failed]
     print(f"Downloaded : {succeeded}")
     if failed:
         print(f"Failed     : {failed}")

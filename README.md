@@ -14,7 +14,7 @@ pip install gradio faiss-cpu sentence-transformers llama-cpp-python huggingface_
 
 ### 2. Download models
 
-The pipeline needs the embedding model, cross-encoder, and at least one LLM (GGUF, ~4 GB each).
+The pipeline needs the bi-encoder (`all-MiniLM-L6-v2`, ~90 MB), the cross-encoder (`ms-marco-MiniLM-L-6-v2`, ~80 MB), and at least one LLM (GGUF, ~4 GB each). All of these are pulled by the same script.
 
 ```bash
 # All LLMs + cross-encoder
@@ -49,6 +49,7 @@ Open http://127.0.0.1:7860 in your browser.
 
 ### Troubleshooting
 
+- **`FileNotFoundError: Path .../models/all-MiniLM-L6-v2 not found`** — the bi-encoder hasn't been downloaded. Run `python3 download_llm_models.py --skip-cross-encoder` (or with no flags) to fetch it.
 - **`FileNotFoundError` for a `.gguf` file** — run the download script for that model key.
 - **First analysis is very slow / RAM spikes** — expected: a 7B Q4 model takes 5–15 s to load and uses ~5 GB RAM.
 - **Port 7860 already in use** — edit `server_port` at the bottom of `ui/app.py`.
