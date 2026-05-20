@@ -224,16 +224,6 @@ def load_user_session(data: bytes):
     return session
 """
 
-_EXAMPLE_PATH_TRAVERSAL = """\
-import os
-
-def read_file(filename: str) -> str:
-    base_dir = "/var/www/uploads"
-    path = os.path.join(base_dir, filename)
-    with open(path) as f:
-        return f.read()
-"""
-
 _EXAMPLE_CLEAN = """\
 def add(a: int, b: int) -> int:
     return a + b
@@ -295,7 +285,6 @@ with gr.Blocks(title="PythonGuard") as demo:
             [_EXAMPLE_CMD,              "qwen2.5"],
             [_EXAMPLE_HARDCODED_SECRET, "qwen2.5"],
             [_EXAMPLE_DESERIALIZE,      "qwen2.5"],
-            [_EXAMPLE_PATH_TRAVERSAL,   "qwen2.5"],
             [_EXAMPLE_CLEAN,            "qwen2.5"],
         ],
         inputs=[code_input, model_dd],
@@ -305,7 +294,6 @@ with gr.Blocks(title="PythonGuard") as demo:
             "Command injection (CWE-78)",
             "Hardcoded secrets (CWE-259)",
             "Insecure deserialization (CWE-502)",
-            "Path traversal (CWE-22)",
             "Clean code (no issues)",
         ],
     )

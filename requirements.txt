@@ -1,0 +1,26 @@
+# Core pipeline
+faiss-cpu>=1.7
+sentence-transformers>=2.7
+numpy>=1.24
+
+# LLM inference
+llama-cpp-python>=0.2
+
+# GPU offload detection (optional — CPU works without it)
+torch>=2.0
+
+# Static analysis tools
+bandit>=1.7
+pylint>=3.0
+
+# Web UI
+gradio>=4.0
+
+# Data loading and utilities
+datasets>=2.18
+huggingface_hub>=0.22
+requests>=2.31
+tqdm>=4.66
+python-dotenv>=1.0
+pyyaml>=6.0
+beautifulsoup4>=4.12
