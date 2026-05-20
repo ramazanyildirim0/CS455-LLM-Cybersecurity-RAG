@@ -17,9 +17,9 @@ Evaluated on the [SecurityEval](https://github.com/s2e-lab/SecurityEval) benchma
 |---|---|---|---|---|
 | Zero-shot LLM (no RAG) | 12.4% | — | — | — |
 | Static analysis only (Bandit + pylint + H001–15) | 52.9% | — | — | — |
-| **PythonGuard** | **75.2%** | **77.7%** | **0.0%** | **86.6%** |
+| **PythonGuard** | **76.9%** | **80.2%** | **0.0%** | **86.3%** |
 
-**+62.8 pp** over zero-shot LLM · **+22.3 pp** over static-analysis only · **zero false positives** on 50 clean snippets.
+**+64.5 pp** over zero-shot LLM · **+24.0 pp** over static-analysis only · **zero false positives** on 50 clean snippets.
 
 ---
 

@@ -123,9 +123,11 @@ def build_prompt(
 
     layer2_results is the dict returned by Retriever.query():
         {"security": [...], "style": [...], "bug_pattern": [...]}
+    All three index results are included in the prompt.
     """
     sec_chunks  = layer2_results.get("security", [])
     style_chunks = layer2_results.get("style", [])
+    bug_chunks   = layer2_results.get("bug_pattern", [])
 
     # Filter security chunks to those with CWE IDs first, then rest
     sec_with_cwe    = [c for c in sec_chunks if c.get("cwe_ids")]
@@ -144,6 +146,8 @@ def build_prompt(
         f"{_fmt_security_chunks(ordered_sec, top_n=5)}\n"
         "## Additional Style/Pattern Context\n"
         f"{_fmt_chunks(style_chunks, top_n=2)}\n"
+        "## Known Bug Patterns\n"
+        f"{_fmt_chunks(bug_chunks, top_n=2)}\n"
         "Now output the JSON array of security findings. "
         "Include ALL static analysis findings above plus any additional high-confidence issues you detect. "
         "Respond with ONLY [ ... ] — no other text:"
